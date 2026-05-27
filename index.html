@@ -48,25 +48,46 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 5vw;
-      height: 68px;
-      background: rgba(44,44,44,.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212,160,23,.15);
+      height: 64px;
+      background: rgba(30,26,20,.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212,160,23,.18);
       transition: background .3s;
     }
+
+    /* Nav logo — monogram image + optional wordmark */
     .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer; text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo-img {
+      height: 38px; width: auto;
+      /* PNG is already transparent; subtle drop-shadow makes it pop on dark bg */
+      filter: drop-shadow(0 0 6px rgba(212,160,23,.35));
+      transition: filter .25s;
+    }
+    .nav-logo:hover .nav-logo-img {
+      filter: drop-shadow(0 0 10px rgba(212,160,23,.65));
+    }
+    .nav-logo-text {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.9rem;
+      font-size: 1.55rem;
       color: var(--gold-lt);
       letter-spacing: .02em;
-      cursor: pointer;
+      line-height: 1;
       transition: color .25s;
     }
-    .nav-logo:hover { color: var(--cream); }
+    .nav-logo:hover .nav-logo-text { color: var(--cream); }
+
+    /* Hide wordmark on very small screens — monogram alone is enough */
+    @media(max-width: 380px) { .nav-logo-text { display: none; } }
+
     .nav-links { display: flex; gap: 2.4rem; list-style: none; }
     .nav-links a {
       font-family: 'DM Sans', sans-serif;
-      font-size: .88rem;
+      font-size: .85rem;
       font-weight: 500;
       letter-spacing: .1em;
       text-transform: uppercase;
@@ -74,34 +95,82 @@
       text-decoration: none;
       transition: color .25s;
       position: relative;
+      /* Bigger tap target on touch */
+      padding: 8px 0;
     }
     .nav-links a::after {
       content: '';
-      position: absolute; bottom: -3px; left: 0; right: 0;
+      position: absolute; bottom: 3px; left: 0; right: 0;
       height: 1px; background: var(--gold-lt);
       transform: scaleX(0); transform-origin: left;
       transition: transform .3s;
     }
-    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover, .nav-links a:focus { color: var(--cream); outline: none; }
     .nav-links a:hover::after { transform: scaleX(1); }
 
-    /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 2px; background: var(--gold-lt); border-radius: 2px; transition: .3s; }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none; flex-direction: column;
+      justify-content: center; align-items: center;
+      gap: 5px; cursor: pointer;
+      width: 44px; height: 44px;   /* large tap target */
+      border-radius: 8px;
+      border: 1px solid rgba(212,160,23,.2);
+      background: transparent;
+      flex-shrink: 0;
+      transition: border-color .25s, background .25s;
+    }
+    .hamburger:hover { border-color: rgba(212,160,23,.5); background: rgba(212,160,23,.06); }
+    .hamburger span {
+      width: 20px; height: 1.5px;
+      background: var(--gold-lt); border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+      display: block;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
-    @media(max-width:640px) {
+    /* ── Mobile dropdown ── */
+    @media(max-width: 640px) {
       .hamburger { display: flex; }
+
       .nav-links {
-        position: fixed; top: 68px; left: 0; right: 0;
-        background: rgba(44,44,44,.97);
-        flex-direction: column; align-items: center;
-        padding: 1.5rem 0; gap: 1.4rem;
-        transform: translateY(-110%); transition: transform .35s;
+        /* Sits directly below the nav bar, slides in/out */
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        z-index: 99;
+        background: rgba(22,18,13,.98);
+        border-bottom: 1px solid rgba(212,160,23,.18);
+        flex-direction: column;
+        align-items: stretch;           /* full-width touch targets */
+        padding: .5rem 0 1rem;
+        gap: 0;
+        /* Slide + fade animation */
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .3s cubic-bezier(.4,0,.2,1), opacity .3s ease;
       }
-      .nav-links.open { transform: translateY(0); }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-links li {
+        border-bottom: 1px solid rgba(212,160,23,.08);
+      }
+      .nav-links li:last-child { border-bottom: none; }
+      .nav-links a {
+        display: block;
+        padding: 1rem 6vw;
+        font-size: .9rem;
+        letter-spacing: .12em;
+        color: rgba(248,241,233,.75);
+      }
+      .nav-links a:active { background: rgba(212,160,23,.07); }
+      /* Remove underline animation on mobile; tap highlight is enough */
+      .nav-links a::after { display: none; }
     }
 
     /* ─── PAGES ──────────────────────────────────────────────────── */
@@ -570,6 +639,65 @@
       padding-top: 1.2rem; margin-top: 1rem;
     }
 
+    /* ─── HERO CREST ─────────────────────────────────────────────── */
+    .hero-crest {
+      width: clamp(160px, 28vw, 260px);
+      height: auto;
+      margin-bottom: 1.6rem;
+      /* The PNG already has transparent bg; gold glow lifts it off the dark hero */
+      filter: drop-shadow(0 0 24px rgba(212,160,23,.35))
+              drop-shadow(0 4px 12px rgba(0,0,0,.45));
+      animation: fadeUp .8s ease both;
+    }
+    @media(max-width: 480px) {
+      .hero-crest { width: 140px; margin-bottom: 1.2rem; }
+    }
+
+    /* ─── MOBILE — GLOBAL TWEAKS ─────────────────────────────────── */
+    @media(max-width: 640px) {
+      /* Hero */
+      .hero { padding: 48px 6vw 52px; }
+      .hero-cta-row { flex-direction: column; align-items: stretch; gap: .8rem; }
+      .hero-cta-row .btn-primary,
+      .hero-cta-row .btn-outline { justify-content: center; width: 100%; }
+
+      /* Story section */
+      .section-container { padding: 56px 6vw; }
+      .pull-quote { padding-left: 1.2rem; font-size: 1.1rem; }
+      .fusion-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* Delivery cards */
+      .delivery-section { padding: 56px 6vw; }
+      .delivery-cards { grid-template-columns: 1fr; }
+
+      /* Menu page */
+      .menu-header { padding: 48px 6vw 36px; }
+      .menu-body { padding: 40px 5vw 60px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .signature-wrap { padding: 1.8rem 1.2rem 1.4rem; }
+      .order-cta { padding: 2.2rem 1.4rem; border-radius: 12px; }
+
+      /* Dishes page */
+      .dishes-header { padding: 48px 6vw 40px; }
+      .dishes-body { padding: 36px 5vw 60px; }
+      .dish-row, .dish-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        padding: 2rem 0;
+      }
+      /* Always show visual first on mobile, text second */
+      .dish-row .dish-visual,
+      .dish-row.reverse .dish-visual { order: 0; }
+      .dish-row .dish-text,
+      .dish-row.reverse .dish-text { order: 1; }
+
+      .dish-visual { aspect-ratio: 16 / 7; font-size: 3rem; }
+      .dish-name { font-size: 1.65rem; }
+
+      /* Footer */
+      .footer-links { gap: 1.2rem; flex-direction: column; align-items: center; }
+    }
+
     /* ─── SCROLL-REVEAL ──────────────────────────────────────────── */
     .reveal {
       opacity: 0; transform: translateY(30px);
@@ -582,13 +710,16 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <div class="nav-logo" onclick="showPage('story')">The Lombardy Lane</div>
+  <div class="nav-logo" onclick="showPage('story')" role="button" aria-label="Go to home">
+    <img src="logo-monogram.png" alt="The Lombardy Lane monogram" class="nav-logo-img" />
+    <span class="nav-logo-text">The Lombardy Lane</span>
+  </div>
   <ul class="nav-links" id="nav-links">
     <li><a href="#" onclick="showPage('story'); closeMobile()">Our Story</a></li>
-    <li><a href="#" onclick="showPage('menu');  closeMobile()">Menu & Order</a></li>
+    <li><a href="#" onclick="showPage('menu');  closeMobile()">Menu &amp; Order</a></li>
     <li><a href="#" onclick="showPage('dishes');closeMobile()">Dishes</a></li>
   </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </div>
 </nav>
@@ -602,6 +733,7 @@
   <section class="hero">
     <div class="particles" id="particles"></div>
 
+    <img src="logo-crest.png" alt="The Lombardy Lane crest" class="hero-crest" />
     <span class="hero-badge">Est. in Love &amp; Hunger</span>
     <h1 class="hero-title">The Lombardy Lane</h1>
     <p class="hero-subtitle">Where the wok meets the pasta pot — a cloud kitchen born from two great culinary worlds.</p>
@@ -1323,12 +1455,17 @@
 
   /* ── MOBILE NAV ── */
   function toggleMenu() {
-    document.getElementById('nav-links').classList.toggle('open');
-    document.getElementById('hamburger').classList.toggle('open');
+    const links = document.getElementById('nav-links');
+    const burger = document.getElementById('hamburger');
+    const isOpen = links.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen);
   }
   function closeMobile() {
     document.getElementById('nav-links').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
+    const burger = document.getElementById('hamburger');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
   }
 
   /* ── SCROLL REVEAL ── */
