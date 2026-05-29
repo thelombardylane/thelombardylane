@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,27 +8,39 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Satisfy&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Satisfy&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ─── DESIGN TOKENS ──────────────────────────────────────────── */
     :root {
-      --cream:   #f8f1e9;
-      --parchm:  #f0e8d8;
-      --dark:    #2c2c2c;
+      --cream: #f8f1e9;
+      --parchm: #f0e8d8;
+      --dark: #2c2c2c;
       --crimson: #9c2c2c;
-      --gold:    #b8860b;
+      --gold: #b8860b;
       --gold-lt: #d4a017;
-      --olive:   #595937;
-      --sage:    #8a8a5a;
-      --veg:     #2e7d32;
-      --radius:  14px;
-      --shadow:  0 20px 60px rgba(156,44,44,.12), 0 6px 20px rgba(0,0,0,.07);
+      --olive: #595937;
+      --sage: #8a8a5a;
+      --veg: #2e7d32;
+      --radius: 14px;
+      --shadow: 0 20px 60px rgba(156, 44, 44, .12), 0 6px 20px rgba(0, 0, 0, .07);
     }
 
     /* ─── RESET & BASE ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: #2c2c2c;
@@ -38,39 +51,55 @@
     /* ─── NOISE TEXTURE OVERLAY ──────────────────────────────────── */
     body::before {
       content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       opacity: .35;
     }
 
     /* ─── NAV ────────────────────────────────────────────────────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 0 5vw;
       height: 64px;
-      background: rgba(30,26,20,.96);
+      background: rgba(30, 26, 20, .96);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(212,160,23,.18);
+      border-bottom: 1px solid rgba(212, 160, 23, .18);
       transition: background .3s;
     }
 
     /* Nav logo — monogram image + optional wordmark */
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      cursor: pointer; text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
       flex-shrink: 0;
     }
+
     .nav-logo-img {
-      height: 38px; width: auto;
+      height: 38px;
+      width: auto;
       /* PNG is already transparent; subtle drop-shadow makes it pop on dark bg */
-      filter: drop-shadow(0 0 6px rgba(212,160,23,.35));
+      filter: drop-shadow(0 0 6px rgba(212, 160, 23, .35));
       transition: filter .25s;
     }
+
     .nav-logo:hover .nav-logo-img {
-      filter: drop-shadow(0 0 10px rgba(212,160,23,.65));
+      filter: drop-shadow(0 0 10px rgba(212, 160, 23, .65));
     }
+
     .nav-logo-text {
       font-family: 'Great Vibes', cursive;
       font-size: 1.55rem;
@@ -79,142 +108,288 @@
       line-height: 1;
       transition: color .25s;
     }
-    .nav-logo:hover .nav-logo-text { color: var(--cream); }
+
+    .nav-logo:hover .nav-logo-text {
+      color: var(--cream);
+    }
 
     /* Hide wordmark on very small screens — monogram alone is enough */
-    @media(max-width: 380px) { .nav-logo-text { display: none; } }
+    @media(max-width: 380px) {
+      .nav-logo-text {
+        display: none;
+      }
+    }
 
-    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
     .nav-links a {
       font-family: 'DM Sans', sans-serif;
       font-size: .85rem;
       font-weight: 500;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(248,241,233,.7);
+      color: rgba(248, 241, 233, .7);
       text-decoration: none;
       transition: color .25s;
       position: relative;
       /* Bigger tap target on touch */
       padding: 8px 0;
     }
+
     .nav-links a::after {
       content: '';
-      position: absolute; bottom: 3px; left: 0; right: 0;
-      height: 1px; background: var(--gold-lt);
-      transform: scaleX(0); transform-origin: left;
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold-lt);
+      transform: scaleX(0);
+      transform-origin: left;
       transition: transform .3s;
     }
-    .nav-links a:hover, .nav-links a:focus { color: var(--cream); outline: none; }
-    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--cream);
+      outline: none;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
 
     /* ── Hamburger ── */
     .hamburger {
-      display: none; flex-direction: column;
-      justify-content: center; align-items: center;
-      gap: 5px; cursor: pointer;
-      width: 44px; height: 44px;   /* large tap target */
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      /* large tap target */
       border-radius: 8px;
-      border: 1px solid rgba(212,160,23,.2);
+      border: 1px solid rgba(212, 160, 23, .2);
       background: transparent;
       flex-shrink: 0;
       transition: border-color .25s, background .25s;
     }
-    .hamburger:hover { border-color: rgba(212,160,23,.5); background: rgba(212,160,23,.06); }
+
+    .hamburger:hover {
+      border-color: rgba(212, 160, 23, .5);
+      background: rgba(212, 160, 23, .06);
+    }
+
     .hamburger span {
-      width: 20px; height: 1.5px;
-      background: var(--gold-lt); border-radius: 2px;
+      width: 20px;
+      height: 1.5px;
+      background: var(--gold-lt);
+      border-radius: 2px;
       transition: transform .3s, opacity .3s;
       display: block;
     }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(4.5px, 4.5px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(4.5px, -4.5px);
+    }
 
     /* ── Mobile dropdown ── */
     @media(max-width: 640px) {
-      .hamburger { display: flex; }
+      .hamburger {
+        display: flex;
+      }
 
       .nav-links {
         /* Sits directly below the nav bar, slides in/out */
         position: fixed;
-        top: 64px; left: 0; right: 0;
+        top: 64px;
+        left: 0;
+        right: 0;
         z-index: 99;
-        background: rgba(22,18,13,.98);
-        border-bottom: 1px solid rgba(212,160,23,.18);
+        background: rgba(22, 18, 13, .98);
+        border-bottom: 1px solid rgba(212, 160, 23, .18);
         flex-direction: column;
-        align-items: stretch;           /* full-width touch targets */
+        align-items: stretch;
+        /* full-width touch targets */
         padding: .5rem 0 1rem;
         gap: 0;
         /* Slide + fade animation */
         transform: translateY(-8px);
         opacity: 0;
         pointer-events: none;
-        transition: transform .3s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+        transition: transform .3s cubic-bezier(.4, 0, .2, 1), opacity .3s ease;
       }
+
       .nav-links.open {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
       }
+
       .nav-links li {
-        border-bottom: 1px solid rgba(212,160,23,.08);
+        border-bottom: 1px solid rgba(212, 160, 23, .08);
       }
-      .nav-links li:last-child { border-bottom: none; }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+
       .nav-links a {
         display: block;
         padding: 1rem 6vw;
         font-size: .9rem;
         letter-spacing: .12em;
-        color: rgba(248,241,233,.75);
+        color: rgba(248, 241, 233, .75);
       }
-      .nav-links a:active { background: rgba(212,160,23,.07); }
+
+      .nav-links a:active {
+        background: rgba(212, 160, 23, .07);
+      }
+
       /* Remove underline animation on mobile; tap highlight is enough */
-      .nav-links a::after { display: none; }
+      .nav-links a::after {
+        display: none;
+      }
     }
 
     /* ─── PAGES ──────────────────────────────────────────────────── */
     .page {
-      display: none; min-height: 100vh;
+      display: none;
+      min-height: 100vh;
       padding-top: 68px;
     }
-    .page.active { display: block; }
+
+    .page.active {
+      display: block;
+    }
 
     /* ─── HERO (PAGE 1) ──────────────────────────────────────────── */
     .hero {
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       min-height: calc(100vh - 68px);
       padding: 80px 5vw 60px;
-      background: linear-gradient(160deg, #1e1a14 0%, #2c2c2c 45%, #1a1210 100%);
+      background: #1a1510;
+      /* fallback */
     }
+
+    /* Background Slideshow */
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .hero-background img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.40) contrast(1.18) saturate(0.85);
+    }
+
+    .hero-background img.active {
+      opacity: 1;
+    }
+
+    /* Vignette */
+    .hero-background::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        radial-gradient(circle at center, transparent 38%, rgba(26, 21, 16, 0.85) 82%),
+        linear-gradient(to bottom, rgba(20, 18, 16, 0.4) 10%, rgba(26, 21, 16, 0.92) 75%);
+      pointer-events: none;
+    }
+
     /* Floating spice particles */
-    .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .particles {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
     .particle {
       position: absolute;
       border-radius: 50%;
       opacity: 0;
       animation: float var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
     }
+
     @keyframes float {
-      0%   { opacity:0; transform: translateY(100vh) rotate(0deg) scale(.5); }
-      15%  { opacity: .45; }
-      85%  { opacity: .35; }
-      100% { opacity:0; transform: translateY(-10vh) rotate(360deg) scale(1); }
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(0deg) scale(.5);
+      }
+
+      15% {
+        opacity: .45;
+      }
+
+      85% {
+        opacity: .35;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-10vh) rotate(360deg) scale(1);
+      }
+    }
+
+    /* Content Layer */
+    .hero>img.hero-crest,
+    .hero>.hero-badge,
+    .hero>.hero-title,
+    .hero>.hero-subtitle,
+    .hero>.hero-divider,
+    .hero>.hero-tagline,
+    .hero>.hero-cta-row {
+      position: relative;
+      z-index: 4;
     }
 
     .hero-badge {
       display: inline-block;
       font-family: 'DM Sans', sans-serif;
-      font-size: .75rem; font-weight: 500;
-      letter-spacing: .2em; text-transform: uppercase;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
       color: var(--gold-lt);
-      border: 1px solid rgba(212,160,23,.35);
+      border: 1px solid rgba(212, 160, 23, .35);
       padding: .4rem 1.2rem;
       border-radius: 100px;
       margin-bottom: 2.2rem;
       animation: fadeUp .9s ease both;
     }
+
     .hero-title {
       font-family: 'Great Vibes', cursive;
       font-size: clamp(3.8rem, 9vw, 7.5rem);
@@ -223,58 +398,105 @@
       line-height: 1.1;
       animation: fadeUp 1s .15s ease both;
     }
+
     .hero-subtitle {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1rem, 2.2vw, 1.4rem);
       font-style: italic;
-      color: rgba(248,241,233,.6);
+      color: rgba(248, 241, 233, .6);
       text-align: center;
       margin-top: 1rem;
       max-width: 560px;
       animation: fadeUp 1s .3s ease both;
     }
+
     .hero-divider {
-      width: 220px; height: 1.5px;
+      width: 220px;
+      height: 1.5px;
       background: linear-gradient(to right, transparent, var(--gold-lt), transparent);
       margin: 2.2rem auto;
       animation: fadeUp 1s .45s ease both;
     }
+
     .hero-tagline {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(.85rem, 1.6vw, 1rem);
-      letter-spacing: .14em; text-transform: uppercase;
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      letter-spacing: 0.18em;
+      font-weight: 500;
+      text-transform: uppercase;
       color: var(--gold);
       text-align: center;
       animation: fadeUp 1s .6s ease both;
     }
+
     .hero-cta-row {
-      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
       margin-top: 3rem;
       animation: fadeUp 1s .75s ease both;
     }
+
     .btn-primary {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--crimson); color: var(--cream);
-      font-family: 'DM Sans', sans-serif; font-size: .88rem;
-      font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-      padding: .85rem 2rem; border-radius: 100px;
-      border: none; cursor: pointer; transition: all .3s;
-      box-shadow: 0 4px 20px rgba(156,44,44,.4);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--crimson);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 4px 20px rgba(156, 44, 44, .4);
     }
-    .btn-primary:hover { background: #b03333; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(156,44,44,.5); }
+
+    .btn-primary:hover {
+      background: #b03333;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(156, 44, 44, .5);
+    }
+
     .btn-outline {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: transparent; color: var(--cream);
-      font-family: 'DM Sans', sans-serif; font-size: .88rem;
-      font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-      padding: .85rem 2rem; border-radius: 100px;
-      border: 1px solid rgba(248,241,233,.3); cursor: pointer; transition: all .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      border: 1px solid rgba(248, 241, 233, .3);
+      cursor: pointer;
+      transition: all .3s;
     }
-    .btn-outline:hover { border-color: var(--gold-lt); color: var(--gold-lt); transform: translateY(-2px); }
+
+    .btn-outline:hover {
+      border-color: var(--gold-lt);
+      color: var(--gold-lt);
+      transform: translateY(-2px);
+    }
 
     @keyframes fadeUp {
-      from { opacity:0; transform: translateY(28px); }
-      to   { opacity:1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ─── STORY SECTION ──────────────────────────────────────────── */
@@ -282,41 +504,77 @@
       background: var(--cream);
       position: relative;
     }
+
     .story-wrap::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 6px;
       background: linear-gradient(to right, var(--crimson), var(--gold-lt), var(--crimson));
     }
 
+    /* ─── STORY SUB-HEADERS ───────────────────────────────────── */
+    .story-subheader {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.35rem, 2.8vw, 1.0rem);
+      color: var(--crimson);
+      margin: 2.0rem 0 1.2rem 0;
+      line-height: 1.25;
+    }
+
+    .story-subheader::after {
+      content: '';
+      display: block;
+      width: 52px;
+      height: 2.5px;
+      background: linear-gradient(to right, var(--gold-lt), transparent);
+      margin-top: 6px;
+    }
+
     .section-container {
-      max-width: 980px; margin: 0 auto;
+      max-width: 980px;
+      margin: 0 auto;
       padding: 90px 5vw;
     }
 
     .label-chip {
       display: inline-block;
       font-family: 'DM Sans', sans-serif;
-      font-size: .72rem; font-weight: 500; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--crimson);
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--crimson);
       margin-bottom: 1.4rem;
     }
+
     .section-heading {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4.5vw, 3.2rem);
-      color: var(--dark); line-height: 1.2;
+      color: var(--dark);
+      line-height: 1.2;
       margin-bottom: 2.4rem;
     }
-    .section-heading em { color: var(--crimson); font-style: italic; }
+
+    .section-heading em {
+      color: var(--crimson);
+      font-style: italic;
+    }
 
     .story-body {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.05rem, 1.6vw, 1.22rem);
-      line-height: 1.85; color: #4a4a4a;
+      line-height: 1.85;
+      color: #4a4a4a;
       max-width: 720px;
     }
-    .story-body p + p { margin-top: 1.4rem; }
-    .story-body strong { color: var(--olive); font-weight: 600; }
+
+    .story-body strong {
+      color: var(--olive);
+      font-weight: 600;
+    }
 
     .pull-quote {
       border-left: 3px solid var(--gold-lt);
@@ -336,80 +594,144 @@
       gap: 1.5rem;
       margin-top: 3.5rem;
     }
+
     .fusion-card {
       background: white;
       border-radius: var(--radius);
       padding: 2rem 1.6rem;
-      box-shadow: 0 4px 22px rgba(0,0,0,.06);
-      border: 1px solid rgba(212,160,23,.18);
-      position: relative; overflow: hidden;
+      box-shadow: 0 4px 22px rgba(0, 0, 0, .06);
+      border: 1px solid rgba(212, 160, 23, .18);
+      position: relative;
+      overflow: hidden;
       transition: transform .3s, box-shadow .3s;
     }
-    .fusion-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(156,44,44,.12); }
+
+    .fusion-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(156, 44, 44, .12);
+    }
+
     .fusion-card::after {
       content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 3px;
       background: linear-gradient(to right, var(--crimson), var(--gold-lt));
     }
-    .fusion-card-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+    .fusion-card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
     .fusion-card-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--dark); margin-bottom: .6rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .6rem;
     }
+
     .fusion-card-desc {
       font-family: 'DM Sans', sans-serif;
-      font-size: .92rem; line-height: 1.6; color: #666;
+      font-size: .92rem;
+      line-height: 1.6;
+      color: #666;
     }
 
     /* delivery section */
     .delivery-section {
       background: var(--dark);
       padding: 80px 5vw;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .delivery-section::before {
       content: '';
-      position: absolute; top: -2px; left: 0; right: 0;
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
       height: 4px;
       background: linear-gradient(to right, transparent, var(--gold-lt), transparent);
     }
-    .delivery-inner { max-width: 980px; margin: 0 auto; }
-    .delivery-section .label-chip { color: var(--gold-lt); }
-    .delivery-section .section-heading { color: var(--cream); }
-    .delivery-section .story-body { color: rgba(248,241,233,.75); }
+
+    .delivery-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .delivery-section .label-chip {
+      color: var(--gold-lt);
+    }
+
+    .delivery-section .section-heading {
+      color: var(--cream);
+    }
+
+    .delivery-section .story-body {
+      color: rgba(248, 241, 233, .75);
+    }
 
     .delivery-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem; margin-top: 2.8rem;
+      gap: 1.2rem;
+      margin-top: 2.8rem;
     }
+
     .dcard {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(212,160,23,.2);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(212, 160, 23, .2);
       border-radius: var(--radius);
       padding: 1.6rem;
       transition: background .3s, transform .3s;
     }
-    .dcard:hover { background: rgba(212,160,23,.08); transform: translateY(-3px); }
-    .dcard-emoji { font-size: 1.8rem; margin-bottom: .8rem; }
+
+    .dcard:hover {
+      background: rgba(212, 160, 23, .08);
+      transform: translateY(-3px);
+    }
+
+    .dcard-emoji {
+      font-size: 1.8rem;
+      margin-bottom: .8rem;
+    }
+
     .dcard-name {
       font-family: 'Satisfy', cursive;
       font-size: 1.35rem;
-      color: var(--gold-lt); margin-bottom: .4rem;
+      color: var(--gold-lt);
+      margin-bottom: .4rem;
     }
+
     .dcard-desc {
-      font-size: .85rem; line-height: 1.55;
-      color: rgba(248,241,233,.55);
+      font-size: .85rem;
+      line-height: 1.55;
+      color: rgba(248, 241, 233, .55);
     }
-    .dcard.coming-soon { opacity: .65; }
-    .dcard.coming-soon .dcard-name { color: var(--sage); }
+
+    .dcard.coming-soon {
+      opacity: .65;
+    }
+
+    .dcard.coming-soon .dcard-name {
+      color: var(--sage);
+    }
+
     .coming-badge {
-      display: inline-block; margin-top: .6rem;
-      font-size: .68rem; font-weight: 500; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--sage);
-      border: 1px solid var(--sage); border-radius: 100px;
+      display: inline-block;
+      margin-top: .6rem;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      border: 1px solid var(--sage);
+      border-radius: 100px;
       padding: .15rem .6rem;
     }
 
@@ -417,29 +739,50 @@
     #page-menu {
       background: var(--cream);
     }
+
     .menu-header {
       background: var(--dark);
       padding: 60px 5vw 50px;
       text-align: center;
     }
-    .menu-header .section-heading { color: var(--cream); }
-    .menu-header .story-body { color: rgba(248,241,233,.65); margin: 0 auto; text-align: center; }
 
-    .menu-body { max-width: 1100px; margin: 0 auto; padding: 60px 5vw 80px; }
+    .menu-header .section-heading {
+      color: var(--cream);
+    }
 
-    .menu-section { margin-bottom: 60px; }
+    .menu-header .story-body {
+      color: rgba(248, 241, 233, .65);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .menu-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 5vw 80px;
+    }
+
+    .menu-section {
+      margin-bottom: 60px;
+    }
+
     .menu-section-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.8rem; color: var(--gold);
+      font-size: 2.8rem;
+      color: var(--gold);
       margin-bottom: 6px;
       padding-bottom: 8px;
       display: inline-block;
       border-bottom: 2px solid;
-      border-image: linear-gradient(to right, var(--gold-lt), rgba(212,160,23,0)) 1;
+      border-image: linear-gradient(to right, var(--gold-lt), rgba(212, 160, 23, 0)) 1;
     }
+
     .menu-section-sub {
-      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--sage); margin-bottom: 2rem;
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 2rem;
     }
 
     .menu-grid {
@@ -447,59 +790,119 @@
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.2rem;
     }
+
     .menu-card {
       background: white;
       border-radius: 12px;
       padding: 1.4rem 1.5rem;
-      border: 1px solid rgba(212,160,23,.15);
-      box-shadow: 0 2px 12px rgba(0,0,0,.05);
-      display: flex; flex-direction: column; gap: .5rem;
+      border: 1px solid rgba(212, 160, 23, .15);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .05);
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
       transition: transform .25s, box-shadow .25s;
     }
-    .menu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(156,44,44,.1); }
+
+    .menu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(156, 44, 44, .1);
+    }
 
     .card-top {
-      display: flex; justify-content: space-between; align-items: flex-start; gap: .8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: .8rem;
     }
+
     .card-name {
       font-family: 'Satisfy', cursive;
       font-size: 1.55rem;
       color: var(--olive);
-      line-height: 1.2; flex: 1;
+      line-height: 1.2;
+      flex: 1;
     }
+
     .card-price {
       font-family: 'DM Sans', sans-serif;
-      font-size: .88rem; font-weight: 500;
-      white-space: nowrap; text-align: right;
+      font-size: .88rem;
+      font-weight: 500;
+      white-space: nowrap;
+      text-align: right;
     }
-    .veg-p { color: var(--veg); }
-    .nonveg-p { color: var(--crimson); }
-    .slash { color: #aaa; margin: 0 2px; }
+
+    .veg-p {
+      color: var(--veg);
+    }
+
+    .nonveg-p {
+      color: var(--crimson);
+    }
+
+    .slash {
+      color: #aaa;
+      margin: 0 2px;
+    }
 
     .card-desc {
       font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: .92rem;
-      color: #888; line-height: 1.45;
+      font-style: italic;
+      font-size: .92rem;
+      color: #888;
+      line-height: 1.45;
     }
+
     .card-note {
-      font-size: .8rem; color: var(--crimson); font-style: italic;
+      font-size: .8rem;
+      color: var(--crimson);
+      font-style: italic;
     }
-    .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-    .tag-veg, .tag-nv {
-      width: 15px; height: 15px;
-      border: 1.5px solid; border-radius: 2px;
-      display: inline-flex; align-items: center; justify-content: center;
+
+    .card-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
     }
-    .tag-veg { border-color: var(--veg); }
-    .tag-veg::after { content:''; width:7px; height:7px; background: var(--veg); border-radius: 50%; }
-    .tag-nv { border-color: var(--crimson); }
-    .tag-nv::after { content:''; width:7px; height:7px; background: var(--crimson); }
+
+    .tag-veg,
+    .tag-nv {
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tag-veg {
+      border-color: var(--veg);
+    }
+
+    .tag-veg::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--veg);
+      border-radius: 50%;
+    }
+
+    .tag-nv {
+      border-color: var(--crimson);
+    }
+
+    .tag-nv::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--crimson);
+    }
 
     /* Signature section highlight */
     .signature-wrap {
-      background: rgba(212,160,23,.07);
+      background: rgba(212, 160, 23, .07);
       border-radius: 16px;
-      border: 1px solid rgba(212,160,23,.3);
+      border: 1px solid rgba(212, 160, 23, .3);
       padding: 2.5rem 2.5rem 2rem;
       margin-top: 60px;
     }
@@ -512,102 +915,200 @@
       padding: 3rem 2rem;
       margin-top: 60px;
     }
+
     .order-cta h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem; color: var(--cream); margin-bottom: .8rem;
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: .8rem;
     }
+
     .order-cta p {
-      font-size: .95rem; color: rgba(248,241,233,.6);
-      max-width: 480px; margin: 0 auto 2rem;
+      font-size: .95rem;
+      color: rgba(248, 241, 233, .6);
+      max-width: 480px;
+      margin: 0 auto 2rem;
     }
+
     .btn-wa {
-      display: inline-flex; align-items: center; gap: .6rem;
-      background: #25D366; color: white;
-      font-family: 'DM Sans', sans-serif; font-size: .92rem; font-weight: 600;
-      padding: .9rem 2.2rem; border-radius: 100px; border: none;
-      cursor: pointer; text-decoration: none;
-      box-shadow: 0 4px 24px rgba(37,211,102,.35);
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: #25D366;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .92rem;
+      font-weight: 600;
+      padding: .9rem 2.2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(37, 211, 102, .35);
       transition: all .3s;
     }
-    .btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,.45); }
-    .btn-wa svg { width: 20px; height: 20px; fill: white; }
+
+    .btn-wa:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37, 211, 102, .45);
+    }
+
+    .btn-wa svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
 
     /* ─── PAGE 3 – DISHES ────────────────────────────────────────── */
-    #page-dishes { background: var(--cream); }
+    #page-dishes {
+      background: var(--cream);
+    }
+
     .dishes-header {
       background: linear-gradient(150deg, #1e1a14, #2c2c2c);
-      padding: 70px 5vw 56px; text-align: center;
+      padding: 70px 5vw 56px;
+      text-align: center;
     }
-    .dishes-header .section-heading { color: var(--cream); }
-    .dishes-header .story-body { color: rgba(248,241,233,.62); margin: 0 auto; text-align: center; }
 
-    .dishes-body { max-width: 1100px; margin: 0 auto; padding: 60px 5vw 80px; }
+    .dishes-header .section-heading {
+      color: var(--cream);
+    }
+
+    .dishes-header .story-body {
+      color: rgba(248, 241, 233, .62);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .dishes-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 5vw 80px;
+    }
 
     .dish-row {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 2.4rem;
       padding: 3rem 0;
-      border-bottom: 1px solid rgba(212,160,23,.18);
+      border-bottom: 1px solid rgba(212, 160, 23, .18);
       align-items: start;
     }
-    .dish-row:last-child { border-bottom: none; }
-    .dish-row.reverse { grid-template-columns: 2fr 1fr; }
-    .dish-row.reverse .dish-visual { order: 2; }
-    .dish-row.reverse .dish-text { order: 1; }
+
+    .dish-row:last-child {
+      border-bottom: none;
+    }
+
+    .dish-row.reverse {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .dish-row.reverse .dish-visual {
+      order: 2;
+    }
+
+    .dish-row.reverse .dish-text {
+      order: 1;
+    }
 
     .dish-visual {
       background: linear-gradient(135deg, var(--parchm), #e8dcc8);
       border-radius: var(--radius);
       aspect-ratio: 1 / .9;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 4rem;
-      box-shadow: 0 6px 24px rgba(0,0,0,.08);
-      position: relative; overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, .08);
+      position: relative;
+      overflow: hidden;
     }
+
     .dish-visual::before {
       content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(212,160,23,.1), rgba(156,44,44,.06));
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212, 160, 23, .1), rgba(156, 44, 44, .06));
     }
+
     .dish-category-badge {
-      position: absolute; top: 12px; right: 12px;
+      position: absolute;
+      top: 12px;
+      right: 12px;
       font-family: 'DM Sans', sans-serif;
-      font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-      background: var(--dark); color: var(--gold-lt);
-      padding: .25rem .7rem; border-radius: 100px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--dark);
+      color: var(--gold-lt);
+      padding: .25rem .7rem;
+      border-radius: 100px;
     }
 
     .dish-text {}
+
     .dish-name {
       font-family: 'Satisfy', cursive;
-      font-size: 2rem; color: var(--olive);
+      font-size: 2rem;
+      color: var(--olive);
       margin-bottom: .4rem;
     }
+
     .dish-price-row {
       font-family: 'DM Sans', sans-serif;
-      font-size: .88rem; margin-bottom: 1rem;
+      font-size: .88rem;
+      margin-bottom: 1rem;
     }
+
     .dish-lore {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.08rem; line-height: 1.8; color: #555;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #555;
     }
-    .dish-lore p + p { margin-top: 1rem; }
-    .dish-lore strong { color: var(--olive); }
+
+    .dish-lore p+p {
+      margin-top: 1rem;
+    }
+
+    .dish-lore strong {
+      color: var(--olive);
+    }
+
     .dish-addon {
-      display: inline-block; margin-top: 1rem;
-      font-size: .8rem; color: var(--crimson); font-style: italic;
-      border: 1px dashed rgba(156,44,44,.35);
-      padding: .3rem .7rem; border-radius: 6px;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: .8rem;
+      color: var(--crimson);
+      font-style: italic;
+      border: 1px dashed rgba(156, 44, 44, .35);
+      padding: .3rem .7rem;
+      border-radius: 6px;
     }
-    .dish-tags-row { display: flex; gap: 6px; align-items: center; margin-bottom: .8rem; }
+
+    .dish-tags-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: .8rem;
+    }
 
     @media(max-width: 680px) {
-      .dish-row, .dish-row.reverse {
+
+      .dish-row,
+      .dish-row.reverse {
         grid-template-columns: 1fr;
       }
-      .dish-row.reverse .dish-visual { order: 0; }
-      .dish-row.reverse .dish-text { order: 0; }
+
+      .dish-row.reverse .dish-visual {
+        order: 0;
+      }
+
+      .dish-row.reverse .dish-text {
+        order: 0;
+      }
     }
 
     /* ─── FOOTER ─────────────────────────────────────────────────── */
@@ -615,891 +1116,1141 @@
       background: #1a1a1a;
       padding: 3rem 5vw 2rem;
       text-align: center;
-      border-top: 1px solid rgba(212,160,23,.15);
+      border-top: 1px solid rgba(212, 160, 23, .15);
     }
+
     .footer-logo {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.4rem; color: var(--gold-lt); margin-bottom: .4rem;
+      font-size: 2.4rem;
+      color: var(--gold-lt);
+      margin-bottom: .4rem;
     }
+
     .footer-tagline {
-      font-size: .82rem; letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(248,241,233,.35); margin-bottom: 2rem;
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(248, 241, 233, .35);
+      margin-bottom: 2rem;
     }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+
     .footer-links a {
-      display: inline-flex; align-items: center; gap: .5rem;
-      font-size: .9rem; color: rgba(248,241,233,.55); text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .9rem;
+      color: rgba(248, 241, 233, .55);
+      text-decoration: none;
       transition: color .25s;
     }
-    .footer-links a:hover { color: var(--gold-lt); }
-    .footer-links img { width: 22px; height: 22px; }
+
+    .footer-links a:hover {
+      color: var(--gold-lt);
+    }
+
+    .footer-links img {
+      width: 22px;
+      height: 22px;
+    }
+
     .footer-copy {
-      font-size: .75rem; color: rgba(248,241,233,.2);
-      border-top: 1px solid rgba(255,255,255,.05);
-      padding-top: 1.2rem; margin-top: 1rem;
+      font-size: .75rem;
+      color: rgba(248, 241, 233, .2);
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      padding-top: 1.2rem;
+      margin-top: 1rem;
     }
 
     /* ─── HERO CREST ─────────────────────────────────────────────── */
     .hero-crest {
-      width: clamp(160px, 28vw, 260px);
+      width: clamp(260px, 38vw, 360px);
       height: auto;
       margin-bottom: 1.6rem;
       /* The PNG already has transparent bg; gold glow lifts it off the dark hero */
-      filter: drop-shadow(0 0 24px rgba(212,160,23,.35))
-              drop-shadow(0 4px 12px rgba(0,0,0,.45));
-      animation: fadeUp .8s ease both;
+      filter:
+        drop-shadow(0 0 15px rgb(212, 160, 23, 0.2)) drop-shadow(0 0 40px rgba(212, 160, 23, 0.4)) drop-shadow(0 0 60px rgba(156, 44, 44, 0.4)) drop-shadow(0 0 90px rgba(212, 160, 23, 0.2));
+
+      animation:
+        fadeUp .9s ease both crest-glow 6s ease-in-out infinite;
+      transition: filter 0.4s ease;
     }
+
     @media(max-width: 480px) {
-      .hero-crest { width: 140px; margin-bottom: 1.2rem; }
+      .hero-crest {
+        width: 240px;
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    .hero-crest:hover {
+      filter:
+        drop-shadow(0 0 30px rgba(212, 160, 23, 0.85)) drop-shadow(0 0 55px rgba(212, 160, 23, 0.55)) drop-shadow(0 0 90px rgba(156, 44, 44, 0.35)) drop-shadow(0 12px 20px rgba(0, 0, 0, 0.6));
+    }
+
+    /* Subtle breathing glow animation */
+    @keyframes crest-glow {
+
+      0%,
+      100% {
+        filter:
+          drop-shadow(0 0 20px rgba(212, 160, 23, 0.6)) drop-shadow(0 0 40px rgba(212, 160, 23, 0.4)) drop-shadow(0 0 70px rgba(156, 44, 44, 0.25)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+      }
+
+      50% {
+        filter:
+          drop-shadow(0 0 28px rgba(212, 160, 23, 0.85)) drop-shadow(0 0 55px rgba(212, 160, 23, 0.55)) drop-shadow(0 0 85px rgba(156, 44, 44, 0.3)) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+      }
     }
 
     /* ─── MOBILE — GLOBAL TWEAKS ─────────────────────────────────── */
     @media(max-width: 640px) {
+
       /* Hero */
-      .hero { padding: 48px 6vw 52px; }
-      .hero-cta-row { flex-direction: column; align-items: stretch; gap: .8rem; }
+      .hero {
+        padding: 48px 6vw 52px;
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: .8rem;
+      }
+
       .hero-cta-row .btn-primary,
-      .hero-cta-row .btn-outline { justify-content: center; width: 100%; }
+      .hero-cta-row .btn-outline {
+        justify-content: center;
+        width: 100%;
+      }
 
       /* Story section */
-      .section-container { padding: 56px 6vw; }
-      .pull-quote { padding-left: 1.2rem; font-size: 1.1rem; }
-      .fusion-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .section-container {
+        padding: 56px 6vw;
+      }
+
+      .pull-quote {
+        padding-left: 1.2rem;
+        font-size: 1.1rem;
+      }
+
+      .fusion-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
 
       /* Delivery cards */
-      .delivery-section { padding: 56px 6vw; }
-      .delivery-cards { grid-template-columns: 1fr; }
+      .delivery-section {
+        padding: 56px 6vw;
+      }
+
+      .delivery-cards {
+        grid-template-columns: 1fr;
+      }
 
       /* Menu page */
-      .menu-header { padding: 48px 6vw 36px; }
-      .menu-body { padding: 40px 5vw 60px; }
-      .menu-grid { grid-template-columns: 1fr; }
-      .signature-wrap { padding: 1.8rem 1.2rem 1.4rem; }
-      .order-cta { padding: 2.2rem 1.4rem; border-radius: 12px; }
+      .menu-header {
+        padding: 48px 6vw 36px;
+      }
+
+      .menu-body {
+        padding: 40px 5vw 60px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .signature-wrap {
+        padding: 1.8rem 1.2rem 1.4rem;
+      }
+
+      .order-cta {
+        padding: 2.2rem 1.4rem;
+        border-radius: 12px;
+      }
 
       /* Dishes page */
-      .dishes-header { padding: 48px 6vw 40px; }
-      .dishes-body { padding: 36px 5vw 60px; }
-      .dish-row, .dish-row.reverse {
+      .dishes-header {
+        padding: 48px 6vw 40px;
+      }
+
+      .dishes-body {
+        padding: 36px 5vw 60px;
+      }
+
+      .dish-row,
+      .dish-row.reverse {
         grid-template-columns: 1fr;
         gap: 1.4rem;
         padding: 2rem 0;
       }
+
       /* Always show visual first on mobile, text second */
       .dish-row .dish-visual,
-      .dish-row.reverse .dish-visual { order: 0; }
-      .dish-row .dish-text,
-      .dish-row.reverse .dish-text { order: 1; }
+      .dish-row.reverse .dish-visual {
+        order: 0;
+      }
 
-      .dish-visual { aspect-ratio: 16 / 7; font-size: 3rem; }
-      .dish-name { font-size: 1.65rem; }
+      .dish-row .dish-text,
+      .dish-row.reverse .dish-text {
+        order: 1;
+      }
+
+      .dish-visual {
+        aspect-ratio: 16 / 7;
+        font-size: 3rem;
+      }
+
+      .dish-name {
+        font-size: 1.65rem;
+      }
 
       /* Footer */
-      .footer-links { gap: 1.2rem; flex-direction: column; align-items: center; }
+      .footer-links {
+        gap: 1.2rem;
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     /* ─── SCROLL-REVEAL ──────────────────────────────────────────── */
     .reveal {
-      opacity: 0; transform: translateY(30px);
+      opacity: 0;
+      transform: translateY(30px);
       transition: opacity .7s ease, transform .7s ease;
     }
-    .reveal.visible { opacity: 1; transform: none; }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
   </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav id="main-nav">
-  <div class="nav-logo" onclick="showPage('story')" role="button" aria-label="Go to home">
-    <img src="logo-monogram.png" alt="The Lombardy Lane monogram" class="nav-logo-img" />
-    <span class="nav-logo-text">The Lombardy Lane</span>
-  </div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#" onclick="showPage('story'); closeMobile()">Our Story</a></li>
-    <li><a href="#" onclick="showPage('menu');  closeMobile()">Menu &amp; Order</a></li>
-    <li><a href="#" onclick="showPage('dishes');closeMobile()">Dishes</a></li>
-  </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-logo" onclick="showPage('story')" role="button" aria-label="Go to home">
+      <img src="logo-monogram.png" alt="The Lombardy Lane monogram" class="nav-logo-img" />
+      <span class="nav-logo-text">The Lombardy Lane</span>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#"
+          onclick="showPage('story'); document.getElementById('story-start').scrollIntoView({behavior:'smooth'}); closeMobile()">Our
+          Story</a></li>
+      <li><a href="#" onclick="showPage('menu');  closeMobile()">Menu</a></li>
+      <li><a href="#" onclick="showPage('dishes');closeMobile()">Dishes</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle menu"
+      aria-expanded="false">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-<!-- ═══════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════
      PAGE 1 — OUR STORY
 ════════════════════════════════════════════════════════════════ -->
-<div id="page-story" class="page active">
+  <div id="page-story" class="page active">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="particles" id="particles"></div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-background" id="hero-background"></div>
+      <div class="particles" id="particles"></div>
 
-    <img src="logo-crest.png" alt="The Lombardy Lane crest" class="hero-crest" />
-    <span class="hero-badge">Est. in Love &amp; Hunger</span>
-    <h1 class="hero-title">The Lombardy Lane</h1>
-    <p class="hero-subtitle">Where the wok meets the pasta pot — a cloud kitchen born from two great culinary worlds.</p>
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">Chinese &times; Italian &nbsp;·&nbsp; Made Fresh &nbsp;·&nbsp; Delivered with Heart</p>
-    <div class="hero-cta-row">
-      <button class="btn-primary" onclick="showPage('menu')">Browse the Menu</button>
-      <button class="btn-outline" onclick="document.getElementById('story-start').scrollIntoView({behavior:'smooth'})">Read Our Story</button>
-    </div>
-  </section>
-
-  <!-- THE STORY -->
-  <section class="story-wrap" id="story-start">
-    <div class="section-container">
-      <span class="label-chip reveal">The Concept</span>
-      <h2 class="section-heading reveal">Two kitchens,<br><em>one lane.</em></h2>
-
-      <div class="story-body reveal">
-        <p>
-          There is a lane in every cook's memory — one that smells of sizzling garlic and soy,
-          where the clatter of a wok echoes against stone walls hung with dried chili strings.
-          There is another lane, softer, that carries the warm breath of slow-simmered tomatoes,
-          of basil bruised by hand, of pasta rolled thin on a dusted wooden board.
-          <strong>The Lombardy Lane is where those two lanes meet.</strong>
-        </p>
-        <p>
-          We are not a restaurant. We are a cloud kitchen — small, deliberate, and a little obsessive
-          about what goes into every box we seal. Our kitchen does not do things at scale for the
-          sake of scale. We do things <strong>at care</strong>.
-        </p>
+      <img src="logo-crest.png" alt="The Lombardy Lane crest" class="hero-crest" />
+      <span class="hero-badge">Grounded In Love &nbsp;·&nbsp; Driven By Hunger</span>
+      <!-- <h1 class="hero-title">The Lombardy Lane</h1>
+    <p class="hero-subtitle">Where the wok meets the pasta pot — a cloud kitchen born from two great culinary worlds.</p> -->
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">Chinese &times; Italian &nbsp;·&nbsp; Love Delivered Fresh</p>
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="showPage('menu')">Browse the Menu</button>
+        <button class="btn-outline"
+          onclick="document.getElementById('story-start').scrollIntoView({behavior:'smooth'})">Read Our Story</button>
       </div>
+    </section>
 
-      <div class="pull-quote reveal">
-        "Every dish is an argument — a gentle one — that Chinese and Italian cooking were always meant to share a table."
-      </div>
+    <!-- THE STORY -->
+    <section class="story-wrap" id="story-start">
+      <div class="section-container">
+        <span class="label-chip reveal">Our Story</span>
+        <h2 class="section-heading reveal">Two kitchens,<br><em>one lane.</em></h2>
 
-      <div class="story-body reveal">
-        <p>
-          The Chinese and Italian culinary traditions sit, surprisingly, very close together
-          when you squint past their surfaces. Both worship garlic with religious fervour.
-          Both believe that noodles, in whatever form, are the closest thing to comfort that
-          flour and water can produce. Both use the wok's high heat and the pasta pot's rolling boil
-          as instruments of transformation — raw things becoming something extraordinary in minutes.
-          Both cultures have a saying, almost identical in spirit: <strong>cook with love, or don't cook at all.</strong>
-        </p>
-        <p>
-          At The Lombardy Lane, we hold that belief as our only non-negotiable.
-          Our Italian Herb Dumplings are pleated with the same patience a Shanghainese
-          grandmother would demand. Our Szechuan Pink Sauce Penne builds heat the way a
-          Neapolitan sugo builds depth — slowly, layered, intentional.
-          Nothing here is a shortcut. It is a <strong>conversation between two cuisines</strong>,
-          happening one dish at a time.
-        </p>
-      </div>
+        <div class="story-body reveal">
+          <p>
+            In the memory of every chef, two distinct paths exist. One is alive with the sharp aroma of sizzling garlic,
+            soy, and the rhythmic percussion of a wok. The other is quiet, carrying the warm, sweet breath of
+            slow-simmered tomatoes and hand-torn basil over a flour-dusted board.
+          </p>
+          <p>
+            <strong>The Lombardy Lane </strong> is the precise point where these two paths converge.
+          </p>
+          <p class="story-subheader">The Cloud Kitchen, Redefined</p>
+          <p>
+            We are not a restaurant designed for crowd or scale. We are a boutique, deliberate cloud kitchen, guided by
+            a singular obsession: perfection inside every box we seal. We do not measure our success by volume, but by
+            the <strong>meticulous care of our craft</strong>.
+          </p>
+        </div>
 
-      <!-- FUSION PILLARS -->
-      <div class="fusion-grid">
-        <div class="fusion-card reveal">
-          <div class="fusion-card-icon">🥢</div>
-          <div class="fusion-card-title">The Wok's Fire</div>
-          <div class="fusion-card-desc">High heat, smoky breath, the Maillard crackle of proteins hitting cast iron — Chinese technique gives every dish a backbone of fearless flavour.</div>
+        <div class="pull-quote reveal">
+          "Every dish is an argument — a gentle one — that Chinese and Italian traditions were always meant to share a
+          table."
         </div>
-        <div class="fusion-card reveal">
-          <div class="fusion-card-icon">🍝</div>
-          <div class="fusion-card-title">Italian Soul</div>
-          <div class="fusion-card-desc">Slow-cooked sauces, hand-pleated dough, the restraint of letting three great ingredients speak rather than ten mediocre ones. Italian tradition gives every dish its heart.</div>
-        </div>
-        <div class="fusion-card reveal">
-          <div class="fusion-card-icon">🫶</div>
-          <div class="fusion-card-title">Made With Intent</div>
-          <div class="fusion-card-desc">No premixes. No shortcuts. Our chili oil is house-made. Our dumpling wrappers are rolled in-house. Our sauces are built from scratch, every single day.</div>
-        </div>
-        <div class="fusion-card reveal">
-          <div class="fusion-card-icon">📦</div>
-          <div class="fusion-card-title">Packed With Purpose</div>
-          <div class="fusion-card-desc">The journey from our kitchen to your hands is treated with the same care as the cooking itself. Warm, sealed, and never an afterthought.</div>
-        </div>
-      </div>
 
-      <!-- LONGER STORY CONTINUED -->
-      <div class="story-body" style="margin-top:3.5rem;">
-        <p class="reveal">
-          The name? <strong>Lombardy</strong> — the northern Italian region that gave the world risotto,
-          osso buco, and a sensibility that good food requires quiet confidence.
-          <strong>Lane</strong> — because the best food in any city has always been found
-          not on the boulevard, but just slightly off it, in a narrow passage that rewards curiosity.
-          We are that lane. You found us.
-        </p>
-        <p class="reveal">
-          We started with a simple question: what would happen if a <strong>Chinese kitchen's
-          technique</strong> — its respect for heat, its love of contrasts, its umami depth —
-          were applied to the <strong>Italian pantry</strong>? What if wonton wrappers held rosemary
-          and fontina? What if spaghetti was finished in a wok with Sichuan peppercorn oil
-          and a splash of balsamic? What if the ancient Chinese five-spice blend found itself
-          tucked inside a ravioli pocket with chicken and feta?
-        </p>
-        <p class="reveal">
-          The answer, it turns out, is extraordinarily delicious.
-        </p>
-      </div>
-    </div>
-  </section>
+        <div class="story-body reveal">
+          <p class="story-subheader">Parallel Heritages</p>
+          <p>
+            Look beyond the surface, and the culinary souls of China and Italy are remarkably aligned. Both cultures
+            approach garlic with religious reverence. Both view the noodle as the ultimate elevation of flour and water.
+            Whether through the flash-fire of a wok or the rolling boil of a pasta pot, both rely on heat as an
+            instrument of pure transformation.
+            Most importantly, both traditions share an unyielding ethos: <strong>cook with devotion, or do not cook at
+              all</strong>.
+          </p>
+          <p class="story-subheader">The Craft</p>
+          <p>
+            We do not take shortcuts. We host conversations.
+          </p>
+          <p>
+            Our Italian Herb Dumplings are pleated with the exacting patience of a Shanghainese master. Our Szechuan
+            Pink Sauce Penne layers its heat slowly, building depth the way a Neapolitan sugo has for generations. This
+            is a dialogue between two culinary empires — <strong>unfolding one dish at a time</strong>.
+          </p>
+        </div>
 
-  <!-- DELIVERY SECTION -->
-  <section class="delivery-section">
-    <div class="delivery-inner">
-      <span class="label-chip reveal">How It Gets to You</span>
-      <h2 class="section-heading reveal">The last mile, <em style="color:var(--gold-lt)">handled gently.</em></h2>
-      <div class="story-body reveal">
-        <p>
-          Cooking a dish perfectly is only half the promise. The other half is making sure it
-          reaches you — <strong>warm, intact, and as close to kitchen-fresh as physics allows</strong>.
-          We take that second half just as seriously.
-        </p>
-        <p>
-          Right now, every order travels to you via <strong>Porter</strong> or <strong>Uber Parcel</strong> —
-          dedicated delivery partners who treat your meal like the careful package it is, not
-          a number on a route optimised for speed alone. You can also place your order directly
-          on WhatsApp and we will dispatch it as quickly as the kitchen allows.
-        </p>
-      </div>
+        <!-- FUSION PILLARS -->
+        <div class="fusion-grid">
+          <div class="fusion-card reveal">
+            <div class="fusion-card-icon">🥢</div>
+            <div class="fusion-card-title">The Wok's Fire</div>
+            <div class="fusion-card-desc">High heat, smoky breath, the Maillard crackle of proteins hitting cast iron —
+              Chinese technique gives every dish a backbone of fearless flavour.</div>
+          </div>
+          <div class="fusion-card reveal">
+            <div class="fusion-card-icon">🍝</div>
+            <div class="fusion-card-title">Italian Soul</div>
+            <div class="fusion-card-desc">Slow-cooked sauces, hand-pleated dough, the restraint of letting three great
+              ingredients speak rather than ten mediocre ones. Italian tradition gives every dish its heart.</div>
+          </div>
+          <div class="fusion-card reveal">
+            <div class="fusion-card-icon">🫶</div>
+            <div class="fusion-card-title">Made With Intent</div>
+            <div class="fusion-card-desc">No premixes. No shortcuts. Our chili oil is house-made. Our dumpling wrappers
+              are rolled in-house. Our sauces are built from scratch, every single day.</div>
+          </div>
+          <div class="fusion-card reveal">
+            <div class="fusion-card-icon">📦</div>
+            <div class="fusion-card-title">Packed With Purpose</div>
+            <div class="fusion-card-desc">The journey from our kitchen to your hands is treated with the same care as
+              the cooking itself. Warm, sealed, and never an afterthought.</div>
+          </div>
+        </div>
 
-      <div class="delivery-cards">
-        <div class="dcard reveal">
-          <div class="dcard-emoji">📦</div>
-          <div class="dcard-name">Porter</div>
-          <div class="dcard-desc">Dedicated point-to-point delivery. Your order goes straight from our kitchen to your door — no stops, no detours.</div>
-        </div>
-        <div class="dcard reveal">
-          <div class="dcard-emoji">🚗</div>
-          <div class="dcard-name">Uber Parcel</div>
-          <div class="dcard-desc">Real-time tracking so you can watch your meal make its way to you, turn by turn, in peace.</div>
-        </div>
-        <div class="dcard reveal">
-          <div class="dcard-emoji">💬</div>
-          <div class="dcard-name">WhatsApp Order</div>
-          <div class="dcard-desc">The simplest way to order — message us, tell us what you'd like, and we handle the rest.</div>
-        </div>
-        <div class="dcard coming-soon reveal">
-          <div class="dcard-emoji">🛵</div>
-          <div class="dcard-name">Zomato</div>
-          <div class="dcard-desc">We are in active discussions and expect to go live very soon.</div>
-          <span class="coming-badge">Coming Soon</span>
-        </div>
-        <div class="dcard coming-soon reveal">
-          <div class="dcard-emoji">🛵</div>
-          <div class="dcard-name">Swiggy</div>
-          <div class="dcard-desc">Final stages of onboarding. Watch this space — we'll announce the day we're live.</div>
-          <span class="coming-badge">Coming Soon</span>
+        <!-- LONGER STORY CONTINUED -->
+        <div class="story-body" style="margin-top:3.5rem;">
+          <p class="reveal">
+            The name? <strong>Lombardy</strong> — the northern Italian region that gave the world risotto,
+            osso buco, and a sensibility that good food requires quiet confidence.
+            <strong>Lane</strong> — because the best food in any city has always been found
+            not on the boulevard, but just slightly off it, in a narrow passage that rewards curiosity.
+            We are that lane. You found us.
+          </p>
+          <p class="reveal">
+            We started with a simple question: what would happen if a <strong>Chinese kitchen's
+              technique</strong> — its respect for heat, its love of contrasts, its umami depth —
+            were applied to the <strong>Italian pantry</strong>? What if wonton wrappers held rosemary
+            and fontina? What if spaghetti was finished in a wok with Sichuan peppercorn oil
+            and a splash of balsamic? What if the ancient Chinese five-spice blend found itself
+            tucked inside a ravioli pocket with chicken and feta?
+          </p>
+          <p class="reveal">
+            The answer, it turns out, is extraordinarily delicious.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">The Lombardy Lane</div>
-    <div class="footer-tagline">Chinese × Italian · Cloud Kitchen</div>
-    <div class="footer-links">
-      <a href="https://www.instagram.com/thelombardylane" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-        @thelombardylane
-      </a>
-      <a href="https://www.facebook.com/thelombardylane" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-        The Lombardy Lane
-      </a>
-      <a href="https://wa.me/+918335985872" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        Order on WhatsApp
-      </a>
-    </div>
-    <div class="footer-copy">© 2025 The Lombardy Lane. Made with love in a cloud kitchen.</div>
-  </footer>
-</div>
+    <!-- DELIVERY SECTION -->
+    <section class="delivery-section">
+      <div class="delivery-inner">
+        <span class="label-chip reveal">How It Gets to You</span>
+        <h2 class="section-heading reveal">The last mile, <em style="color:var(--gold-lt)">handled gently.</em></h2>
+        <div class="story-body reveal">
+          <p>
+            Cooking a dish perfectly is only half the promise. The other half is making sure it
+            reaches you — <strong>warm, intact, and as close to kitchen-fresh as physics allows</strong>.
+            We take that second half just as seriously.
+          </p>
+          <p>
+            Right now, every order travels to you via <strong>Porter</strong> or <strong>Uber Parcel</strong> —
+            dedicated delivery partners who treat your meal like the careful package it is, not
+            a number on a route optimised for speed alone. You can also place your order directly
+            on WhatsApp and we will dispatch it as quickly as the kitchen allows.
+          </p>
+        </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     PAGE 2 — MENU & ORDER
-════════════════════════════════════════════════════════════════ -->
-<div id="page-menu" class="page">
+        <div class="delivery-cards">
+          <div class="dcard reveal">
+            <div class="dcard-emoji">📦</div>
+            <div class="dcard-name">Porter</div>
+            <div class="dcard-desc">Dedicated point-to-point delivery. Your order goes straight from our kitchen to your
+              door — no stops, no detours.</div>
+          </div>
+          <div class="dcard reveal">
+            <div class="dcard-emoji">🚗</div>
+            <div class="dcard-name">Uber Parcel</div>
+            <div class="dcard-desc">Real-time tracking so you can watch your meal make its way to you, turn by turn, in
+              peace.</div>
+          </div>
+          <div class="dcard reveal">
+            <div class="dcard-emoji">💬</div>
+            <div class="dcard-name">WhatsApp Order</div>
+            <div class="dcard-desc">The simplest way to order — message us, tell us what you'd like, and we handle the
+              rest.</div>
+          </div>
+          <div class="dcard coming-soon reveal">
+            <div class="dcard-emoji">🛵</div>
+            <div class="dcard-name">Zomato</div>
+            <div class="dcard-desc">We are in active discussions and expect to go live very soon.</div>
+            <span class="coming-badge">Coming Soon</span>
+          </div>
+          <div class="dcard coming-soon reveal">
+            <div class="dcard-emoji">🛵</div>
+            <div class="dcard-name">Swiggy</div>
+            <div class="dcard-desc">Final stages of onboarding. Watch this space — we'll announce the day we're live.
+            </div>
+            <span class="coming-badge">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="menu-header">
-    <span class="label-chip" style="color:var(--gold-lt)">Menu & Order</span>
-    <h2 class="section-heading" style="margin-bottom:1rem">The Lombardy Lane Menu</h2>
-    <p class="story-body" style="font-size:1rem; color:rgba(248,241,233,.62); max-width:520px; margin:0 auto;">
-      Every item is freshly prepared. Order via WhatsApp and we'll confirm your slot.
-    </p>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">The Lombardy Lane</div>
+      <div class="footer-tagline">A Tale of Two Cuisine&nbsp;·&nbsp;One Lane</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/thelombardylane" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+          @thelombardylane
+        </a>
+        <a href="https://www.facebook.com/thelombardylane" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+          The Lombardy Lane
+        </a>
+        <a href="https://wa.me/+918335985872" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          Order on WhatsApp
+        </a>
+      </div>
+      <div class="footer-copy">© 2026 The Lombardy Lane. Made with love in a cloud kitchen.</div>
+    </footer>
   </div>
 
-  <div class="menu-body">
+  <!-- ═══════════════════════════════════════════════════════════════
+     PAGE 2 — MENU
+════════════════════════════════════════════════════════════════ -->
+  <div id="page-menu" class="page">
 
-    <!-- STARTERS -->
-    <div class="menu-section">
-      <h3 class="menu-section-title">Starters</h3>
-      <p class="menu-section-sub">Small plates, big intentions</p>
-      <div class="menu-grid">
+    <!-- <div class="menu-header">
+      <span class="label-chip" style="color:var(--gold-lt)">Menu</span>
+      <h2 class="section-heading" style="margin-bottom:1rem">The Lombardy Lane</h2>
+      <p class="story-body" style="font-size:1rem; color:rgba(248,241,233,.62); max-width:520px; margin:0 auto;">
+        A Tale of Two Cuisine&nbsp;·&nbsp;One Lane
+      </p>
+    </div> -->
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Italian Herb Dumplings</div>
-            <div class="card-price">
-              <span class="veg-p">₹219</span><span class="slash"> / </span><span class="nonveg-p">₹249</span>
+    <div class="menu-header">
+      <span class="label-chip" style="color:var(--gold-lt)">Menu</span>
+      <h2 class="section-heading" style="margin-bottom:1rem">A Culinary<br><em
+          style="color:var(--gold-lt)">Romance...</em></h2>
+      <p class="story-body" style="font-size:1rem; max-width:540px; margin:0 auto;">
+        Two souls from distant lands met in one lane. Every dish is a chapter of their love story — where Italian
+        passion meets Chinese soul.
+      </p>
+    </div>
+
+
+
+
+    <div class="menu-body">
+
+      <!-- STARTERS -->
+      <div class="menu-section">
+        <h3 class="menu-section-title">Starters</h3>
+        <p class="menu-section-sub">Small plates, big intentions</p>
+        <div class="menu-grid">
+
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Italian Herb Dumplings</div>
+              <div class="card-price">
+                <span class="veg-p">₹219</span><span class="slash"> / </span><span class="nonveg-p">₹249</span>
+              </div>
             </div>
+            <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">Classic Italian fragrant herbs embedded on dumpling wrappers, perfected in-house.
+              Served with a classic broth, sprinkled with chili and toasted black pepper. (8 Pieces)</div>
+            <div class="card-note">Add on: Lombardy Signature Chili Oil Tomato Chutney ₹39</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">Classic Italian fragrant herbs embedded on dumpling wrappers, perfected in-house. Served with a classic broth, sprinkled with chili and toasted black pepper. (8 Pieces)</div>
-          <div class="card-note">Add on: Lombardy Signature Chili Oil Tomato Chutney ₹39</div>
-        </div>
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Mozzarella Tempura</div>
-            <div class="card-price"><span class="veg-p">₹229</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Mozzarella Tempura</div>
+              <div class="card-price"><span class="veg-p">₹229</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-veg"></span></div>
+            <div class="card-desc">Fresh mozzarella cubes coated in light, crispy tempura batter, served with a soy
+              balsamic vinegar reduction.</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span></div>
-          <div class="card-desc">Fresh mozzarella cubes coated in light, crispy tempura batter, served with a soy balsamic vinegar reduction.</div>
-        </div>
 
+        </div>
       </div>
-    </div>
 
-    <!-- MAINS -->
-    <div class="menu-section">
-      <h3 class="menu-section-title">Mains</h3>
-      <p class="menu-section-sub">Where the fusion truly begins</p>
-      <div class="menu-grid">
+      <!-- MAINS -->
+      <div class="menu-section">
+        <h3 class="menu-section-title">Mains</h3>
+        <p class="menu-section-sub">Where the fusion truly begins</p>
+        <div class="menu-grid">
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Manchurian Meatball Pasta</div>
-            <div class="card-price"><span class="nonveg-p">₹289</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Manchurian Meatball Pasta</div>
+              <div class="card-price"><span class="nonveg-p">₹289</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-nv"></span></div>
+            <div class="card-desc">Classic Italian meatballs in manchurian sauce to condiment the spaghetti. A fusion
+              match made in heaven.</div>
           </div>
-          <div class="card-tags"><span class="tag-nv"></span></div>
-          <div class="card-desc">Classic Italian meatballs in manchurian sauce to condiment the spaghetti. A fusion match made in heaven.</div>
-        </div>
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Pomodoro Spice Noodles</div>
-            <div class="card-price"><span class="veg-p">₹289</span><span class="slash"> / </span><span class="nonveg-p">₹349</span></div>
+          <!-- <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Pomodoro Spice Noodles</div>
+              <div class="card-price"><span class="veg-p">₹289</span><span class="slash"> / </span><span
+                  class="nonveg-p">₹349</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">Classic pomodoro sauce infused with Chinese spices to flavour stir-fried noodles with
+              a hint of chili to finish.</div>
+            <div class="card-note">Veg: Mushroom&nbsp;·&nbsp;Non-Veg: Chicken, Egg</div>
+          </div> -->
+
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Kung Pao Penne</div>
+              <div class="card-price"><span class="veg-p">₹269</span><span class="slash"> / </span><span
+                  class="nonveg-p">₹299</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">Al dente penne tossed with roasted peanuts, blackened chilies, and a balsamic-soy
+              reduction.</div>
+            <div class="card-note">Veg: Mushroom&nbsp;·&nbsp;Non-Veg: Chicken, Egg</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">Classic pomodoro sauce infused with Chinese spices to flavour stir-fried noodles with a hint of chili to finish.</div>
-          <div class="card-note">Veg: Mushroom · Non-Veg: Chicken, Egg</div>
-        </div>
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Kung Pao Penne</div>
-            <div class="card-price"><span class="veg-p">₹269</span><span class="slash"> / </span><span class="nonveg-p">₹299</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Five Spiced Ravioli</div>
+              <div class="card-price"><span class="nonveg-p">₹339</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-nv"></span></div>
+            <div class="card-desc">Chicken and feta cheese stuffing with basil leaves, covered in parsley ravioli,
+              served with roasted tomato basil garlic five spiced sauce.</div>
+            <div class="card-note">Add on: Extra Cheese ₹39</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">Al dente penne tossed with roasted peanuts, blackened chilies, and a balsamic-soy reduction.</div>
-          <div class="card-note">Veg: Mushroom · Non-Veg: Chicken, Egg</div>
-        </div>
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Five Spiced Ravioli</div>
-            <div class="card-price"><span class="nonveg-p">₹339</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Sichuan Boscaiola</div>
+              <div class="card-price"><span class="veg-p">₹339</span><span class="slash"> / </span><span
+                  class="nonveg-p">₹389</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">Creamy penne with sautéed mushrooms and Sichuan peppercorns for a citrusy "mala"
+              finish, garnished with cheese and chili oil.</div>
+            <div class="card-note">Veg: Mushroom&nbsp;·&nbsp;Non-Veg: Chicken</div>
           </div>
-          <div class="card-tags"><span class="tag-nv"></span></div>
-          <div class="card-desc">Chicken and feta cheese stuffing with basil leaves, covered in parsley ravioli, served with roasted tomato basil garlic five spiced sauce.</div>
-          <div class="card-note">Add on: Extra Cheese ₹39</div>
-        </div>
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Sichuan Boscaiola</div>
-            <div class="card-price"><span class="veg-p">₹339</span><span class="slash"> / </span><span class="nonveg-p">₹389</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Lao Gan Ma Aglio E Olio</div>
+              <div class="card-price"><span class="nonveg-p">₹309</span></div>
+            </div>
+            <div class="card-tags"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">The minimalist Italian classic reimagined with Lao Gan Ma Spicy Chili Crisp. Topped
+              with a poached egg, dusted with spices and finished with lemon zest.</div>
+            <div class="card-note">Add on: Mushroom&nbsp;·&nbsp;Chicken ₹39</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">Creamy penne with sautéed mushrooms and Sichuan peppercorns for a citrusy "mala" finish, garnished with cheese and chili oil.</div>
-          <div class="card-note">Veg: Mushroom · Non-Veg: Chicken</div>
-        </div>
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Lao Gan Ma Aglio E Olio</div>
-            <div class="card-price"><span class="veg-p">₹309</span><span class="slash"> / </span><span class="nonveg-p">₹349</span></div>
-          </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">The minimalist Italian classic reimagined with Lao Gan Ma Spicy Chili Crisp. Topped with a poached egg, dusted with spices and finished with lemon zest.</div>
-          <div class="card-note">Veg: Mushroom · Non-Veg: Chicken</div>
         </div>
-
       </div>
-    </div>
 
-    <!-- SIGNATURE -->
-    <div class="signature-wrap">
-      <h3 class="menu-section-title">Signature Fusion Mains</h3>
-      <p class="menu-section-sub">The Lombardy Lane originals</p>
-      <div class="menu-grid">
+      <!-- SIGNATURE -->
+      <div class="signature-wrap">
+        <h3 class="menu-section-title">Signature Fusion Mains</h3>
+        <p class="menu-section-sub">The Lombardy Lane originals</p>
+        <div class="menu-grid">
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Szechuan Pink Sauce Penne</div>
-            <div class="card-price"><span class="veg-p">₹349</span><span class="slash"> / </span><span class="nonveg-p">₹389</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Szechuan Pink Sauce Penne</div>
+              <div class="card-price"><span class="veg-p">₹349</span><span class="slash"> / </span><span
+                  class="nonveg-p">₹389</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">Creamy tomato sauce infused with house-made Szechuan chili crisp and toasted
+              peppercorns.</div>
+            <div class="card-note">Veg: Mushroom&nbsp;·&nbsp;Non-Veg: Chicken</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">Creamy tomato sauce infused with house-made Szechuan chili crisp and toasted peppercorns.</div>
-          <div class="card-note">Veg: Mushroom · Non-Veg: Chicken</div>
-        </div>
 
-        <div class="menu-card">
+          <!-- <div class="menu-card">
           <div class="card-top">
             <div class="card-name">Wok Fired Pesto Jasmine Rice</div>
             <div class="card-price"><span class="nonveg-p">₹349</span></div>
           </div>
           <div class="card-tags"><span class="tag-nv"></span></div>
           <div class="card-desc">Jasmine rice tossed with basil pesto, toasted nuts, shredded chicken, Chinese spices and crispy garlic.</div>
-        </div>
+        </div> -->
 
-        <div class="menu-card">
-          <div class="card-top">
-            <div class="card-name">Dragon Lasagna Cupcakes</div>
-            <div class="card-price"><span class="veg-p">₹309</span><span class="slash"> / </span><span class="nonveg-p">₹359</span></div>
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Smoky Coconut Mala Linguine</div>
+              <div class="card-price"><span class="nonveg-p">₹349</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-nv"></span></div>
+            <div class="card-desc">Linguine in a smoky coconut-chicken broth layered with house-blended spices, roasted
+              chillies, crumbled cheese, and fiery chilli oil.</div>
+            <div class="card-note">Add on: Shrimp ₹79</div>
           </div>
-          <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-          <div class="card-desc">Crispy wonton layers filled with ginger-garlic, soy minced Italian herbs, cheese, and Sichuan spice.</div>
-          <div class="card-note">Veg: Eggplant · Non-Veg: Chicken</div>
+
+          <div class="menu-card">
+            <div class="card-top">
+              <div class="card-name">Dragon Lasagna Cupcakes</div>
+              <div class="card-price"><span class="veg-p">₹309</span><span class="slash"> / </span><span
+                  class="nonveg-p">₹359</span></div>
+            </div>
+            <div class="card-tags"><span class="tag-veg"></span><span class="tag-nv"></span></div>
+            <div class="card-desc">Crispy wonton layers filled with ginger-garlic, soy minced Italian herbs, cheese, and
+              Sichuan spice.</div>
+            <div class="card-note">Veg: Eggplant&nbsp;·&nbsp;Non-Veg: Chicken</div>
+          </div>
+
         </div>
-
       </div>
-    </div>
 
-    <!-- WA CTA -->
-    <div class="order-cta">
-      <h3>Ready to order?</h3>
-      <p>Send us a WhatsApp message with your items and we'll confirm your order and delivery window right away.</p>
+      <!-- WA CTA -->
+      <!-- <div class="order-cta"> -->
+      <br>
+      <br>
+      <br>
+      <h3 class="menu-section-title">Ready to order?</h3>
+      <br>
+      <br>
+      <!-- <p>Send us a WhatsApp message with your items and we'll confirm your order and delivery window right away.</p> -->
       <a href="https://wa.me/+918335985872" target="_blank" class="btn-wa">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Order on WhatsApp
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        WhatsApp
       </a>
+      <!-- </div> -->
+
     </div>
 
+    <footer>
+      <div class="footer-logo">The Lombardy Lane</div>
+      <div class="footer-tagline">A Tale of Two Cuisine&nbsp;·&nbsp;One Lane</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/thelombardylane" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+          @thelombardylane
+        </a>
+        <a href="https://www.facebook.com/thelombardylane" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+          The Lombardy Lane
+        </a>
+        <a href="https://wa.me/+918335985872" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          Order on WhatsApp
+        </a>
+      </div>
+      <div class="footer-copy">© 2026 The Lombardy Lane. Made with love in a cloud kitchen.</div>
+    </footer>
   </div>
 
-  <footer>
-    <div class="footer-logo">The Lombardy Lane</div>
-    <div class="footer-tagline">Chinese × Italian · Cloud Kitchen</div>
-    <div class="footer-links">
-      <a href="https://www.instagram.com/thelombardylane" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-        @thelombardylane
-      </a>
-      <a href="https://wa.me/+918335985872" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        Order on WhatsApp
-      </a>
-    </div>
-    <div class="footer-copy">© 2025 The Lombardy Lane. Made with love in a cloud kitchen.</div>
-  </footer>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════
      PAGE 3 — DISHES
 ════════════════════════════════════════════════════════════════ -->
-<div id="page-dishes" class="page">
+  <div id="page-dishes" class="page">
 
-  <div class="dishes-header">
-    <span class="label-chip" style="color:var(--gold-lt)">Every Dish, Its Story</span>
-    <h2 class="section-heading" style="margin-bottom:1rem">What's on your plate<br><em style="color:var(--gold-lt)">and why.</em></h2>
-    <p class="story-body" style="font-size:1rem; max-width:540px; margin:0 auto;">
-      Every item on our menu was born from a genuine obsession. Here is the story behind each one — the inspiration, the technique, the tiny details you might not taste but will certainly feel.
-    </p>
+    <div class="dishes-header">
+      <span class="label-chip" style="color:var(--gold-lt)">Every Dish, Its Story</span>
+      <h2 class="section-heading" style="margin-bottom:1rem">What's on your plate<br><em
+          style="color:var(--gold-lt)">and why.</em></h2>
+      <p class="story-body" style="font-size:1rem; max-width:540px; margin:0 auto;">
+        Every dish on our menu began as an obsession. Discover the stories, the secrets, and the invisible details you
+        won't just taste — but truly feel.
+      </p>
+    </div>
+
+    <div class="dishes-body">
+
+      <!-- ITALIAN HERB DUMPLINGS -->
+      <div class="dish-row reveal">
+        <div class="dish-visual">
+          🥟
+          <span class="dish-category-badge">Starter&nbsp;·&nbsp;Veg / NV</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Italian Herb Dumplings</div>
+          <div class="dish-lore">
+            <p>
+              The dumpling is perhaps <strong>the most universal act of care in food</strong>. Across every culture
+              that has folded dough around filling and applied heat, there is the same quiet gesture:
+              someone took the time to make this for you.
+            </p>
+            <p>
+              We asked what would happen if the soul of a <strong>Chinese jiaozi</strong> — its delicate,
+              translucent wrapper, its broth-soaked richness — were infused with the fragrant herb
+              vocabulary of <strong>Italian cuisine</strong>. Rosemary. Thyme. Oregano. Pressed gently into
+              the dough itself, so the wrapper is already flavoured before the filling is added.
+            </p>
+            <p>
+              Each piece is pleated by hand. Served eight to a portion with a simple broth
+              that carries the herbs further, and a finishing crack of <strong>toasted black pepper
+                and dried chili</strong>. Our house-made Signature Chili Oil Tomato Chutney — prepared
+              in small batches, slow-infused — is the add-on we quietly recommend to everyone.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOZZARELLA TEMPURA -->
+      <div class="dish-row reverse reveal">
+        <div class="dish-visual">
+          🧀
+          <span class="dish-category-badge">Starter&nbsp;·&nbsp;Veg</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Mozzarella Tempura</div>
+          <div class="dish-lore">
+            <p>
+              Tempura is a <strong>Japanese gift to the world</strong> — a batter so light it barely exists,
+              a shell that exists only to introduce texture before stepping aside. We borrow it here
+              not from Japan but through the lens of <strong>Italian and Chinese thinking together</strong>:
+              fresh, high-moisture mozzarella — the kind that weeps when you press it — coated
+              and fried to a shattering, golden shell.
+            </p>
+            <p>
+              The dipping sauce is where the fusion lives: a <strong>soy balsamic vinegar reduction</strong>
+              that is both salty and sweet, with the acidity of a good Italian vinegar and the
+              umami depth of Chinese soy. The moment the hot cheese meets that cold, dark sauce,
+              the two worlds stop being metaphorical.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MANCHURIAN MEATBALL PASTA -->
+      <div class="dish-row reveal">
+        <div class="dish-visual">
+          🍝
+          <span class="dish-category-badge">Main&nbsp;·&nbsp;Non-Veg</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Manchurian Meatball Pasta</div>
+          <div class="dish-lore">
+            <p>
+              This dish is the one that started the whole idea. It was born from a very simple
+              conversation: <em>"What is the Chinese equivalent of a tomato meatball sauce?"</em>
+              The answer — arrived at after many failed attempts and one very successful one —
+              is <strong>Manchurian</strong>.
+            </p>
+            <p>
+              The Italian meatball, with its fennel and parsley and Parmigiano, is rolled and
+              seared in the same wok that builds the Manchurian sauce — a deep, tangy, fermented
+              soy-ginger base that is arguably <strong>the soul of Indian-Chinese cooking</strong>.
+              They are not natural companions. They are, once you try it, inseparable ones.
+              Served over spaghetti. No apology needed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- POMODORO SPICE NOODLES -->
+      <!-- <div class="dish-row reverse reveal">
+        <div class="dish-visual">
+          🍜
+          <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Pomodoro Spice Noodles</div>
+          <div class="dish-lore">
+            <p>
+              The pomodoro — Italian for simply "tomato" — is the most humble and celebrated
+              of sauces. <strong>Tomato, olive oil, garlic, salt.</strong> That is it. That restraint
+              is what makes it extraordinary. We keep the restraint but then ask a single
+              guest to enter: <strong>Chinese spice</strong>.
+            </p>
+            <p>
+              Dried chili. Star anise. White pepper. A whisper of five-spice. They do not
+              overwhelm the tomato — they <strong>amplify</strong> it, the way a bass note amplifies
+              a melody. Served over stir-fried noodles so the sauce can coat every strand and
+              cling the way a good pomodoro should. A finishing chili thread for heat. A simple
+              dish that is far harder to get right than it looks.
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- KUNG PAO PENNE -->
+      <div class="dish-row reveal">
+        <div class="dish-visual">
+          🥜
+          <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Kung Pao Penne</div>
+          <div class="dish-lore">
+            <p>
+              <strong>Kung Pao</strong> is one of the great Chinese dishes — ancient in origin, brilliant
+              in construction. It is a study in <strong>textural and flavour contrast</strong>: the soft
+              protein, the crunch of peanut, the numbing heat of dried chili, the sweetness
+              of a well-made sauce.
+            </p>
+            <p>
+              We preserve every one of those contrasts but change the vehicle. Penne — with its
+              ridges and its hollow core — catches <strong>the balsamic-soy reduction</strong> in a way no other
+              pasta does. Roasted peanuts give the crunch. Blackened Sichuan chilies give the heat.
+              The balsamic's acidity softens everything into a sauce that is simultaneously familiar
+              and completely new. One of our most-loved dishes by people who were not expecting to love it.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIVE SPICED RAVIOLI -->
+      <div class="dish-row reverse reveal">
+        <div class="dish-visual">
+          🫕
+          <span class="dish-category-badge">Main&nbsp;·&nbsp;Non-Veg</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Five Spiced Ravioli</div>
+          <div class="dish-lore">
+            <p>
+              Ravioli is a <strong>labour of love</strong>. You make the dough. You rest it. You roll it.
+              You fill it, seal it, ensure it doesn't tear when it meets boiling water. This is
+              exactly the kind of thing a cloud kitchen is supposed to save time on by not doing.
+              We do it anyway.
+            </p>
+            <p>
+              The filling — <strong>chicken, feta, fresh basil</strong> — is Italian in spirit.
+              The sauce — roasted tomato with garlic, bathed in <strong>Chinese five spice</strong> —
+              is where the dish shifts hemispheres. Five spice (star anise, cloves, cinnamon,
+              Sichuan pepper, fennel seeds) has a natural kinship with slow-roasted tomato that
+              most people have simply never thought to explore. We have. Repeatedly.
+              We are confident you will not want to go back.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SICHUAN BOSCAIOLA -->
+      <div class="dish-row reveal">
+        <div class="dish-visual">
+          🍄
+          <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Sichuan Boscaiola</div>
+          <div class="dish-lore">
+            <p>
+              <em>Boscaiola</em> means <strong>"of the woods"</strong> in Italian — a creamy, earthy pasta
+              traditionally built on mushrooms, bacon or sausage, and a rich white sauce. It is an
+              autumn dish. It tastes like the inside of a warm room while rain falls outside.
+            </p>
+            <p>
+              We keep the woods. We keep the cream and the mushrooms. But we plant a <strong>Sichuan
+                peppercorn</strong> right at the heart of it, and it changes everything. Sichuan pepper
+              does not burn. It <strong>tingles</strong> — a citrusy, electric sensation on the tongue that
+              food scientists have a name for (mala) and that everyone who tries it has a different
+              emotional response to. Finished with chili oil and melted cheese. One of those dishes
+              that quietly becomes a person's favourite.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAO GAN MA AGLIO E OLIO -->
+      <div class="dish-row reverse reveal">
+        <div class="dish-visual">
+          🌶️
+          <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Lao Gan Ma Aglio E Olio</div>
+          <div class="dish-lore">
+            <p>
+              <strong>Aglio e Olio</strong> is the pasta you make at midnight when you have nothing
+              in the fridge. Garlic. Olive oil. Pasta water. Chili. That is it. And it is
+              one of the most profound things Italian cuisine has ever produced —
+              proof that simplicity and greatness are not opposites.
+            </p>
+            <p>
+              <strong>Lao Gan Ma</strong> is China's most beloved condiment — a jar of crunchy,
+              fermented chili crisp with fried garlic, black bean, and a depth of umami so
+              concentrated it makes other condiments feel apologetic.
+              Combine these two garlic-loving, chili-respecting, oil-carrying traditions
+              and the result is <strong>louder, crunchier, more electric</strong> than either parent.
+              We finish with a poached egg and a hit of lemon zest — the egg for richness,
+              the lemon to cut through everything and remind you what subtlety feels like.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SZECHUAN PINK SAUCE PENNE (Signature) -->
+      <div class="dish-row reveal"
+        style="border-top: 2px solid rgba(212,160,23,.3); margin-top:2rem; padding-top:3rem;">
+        <div class="dish-visual" style="background: linear-gradient(135deg, #f5ddd3, #eed0b8);">
+          🌸
+          <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Szechuan Pink Sauce Penne</div>
+          <div class="dish-lore">
+            <p>
+              The <strong>pink sauce</strong> — rosé, as the Italians call it — is cream and tomato
+              in conversation. Neither dominant, both necessary. It is a sauce of diplomacy.
+              We respected that and then introduced a <strong>Szechuan agitator</strong> into the
+              diplomatic conversation.
+            </p>
+            <p>
+              Our house-made <strong>Szechuan chili crisp</strong> is prepared in small batches —
+              slow-fried garlic, dried Sichuan chilies, toasted peppercorns, a breath of five-spice.
+              It is stirred through the pink sauce so that every bite is creamy and gentle
+              right up until it isn't. The warmth blooms after. It is one of those sauces
+              that makes you eat faster without realising it. Our most reordered dish.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WOK FIRED PESTO JASMINE RICE (Signature) -->
+      <!-- <div class="dish-row reverse reveal">
+        <div class="dish-visual" style="background: linear-gradient(135deg, #d8e8cc, #c5dab8);">
+          🌿
+          <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Wok Fired Pesto Jasmine Rice</div>
+          <div class="dish-lore">
+            <p>
+              <strong>Pesto</strong> does not belong in a wok. That is, of course, exactly why we put it there.
+              The wok's fierce heat does something to basil pesto that a gentle toss cannot —
+              it <strong>toasts the pine nuts and garlic further</strong>, causes the edges to char very
+              slightly, and releases a smoky, grassy compound that smells like a garden
+              in August and tastes like something you can't quite name but instantly love.
+            </p>
+            <p>
+              <strong>Jasmine rice</strong> was chosen for its fragrance — it carries aromatics
+              in a way that basmati doesn't, and it has just enough stickiness to absorb
+              the wok's residual flavours. Shredded chicken, Chinese spice, and crispy garlic
+              arrive just before plating. The result is three food cultures — Italian, Chinese,
+              South-East Asian — colliding briefly and coming out as something entirely their own.
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- SMOKY COCONUT MALA LINGUINE -->
+      <div class="dish-row reveal"
+        style="border-top: 2px solid rgba(212,160,23,.3); margin-top:2rem; padding-top:3rem;">
+        <div class="dish-visual" style="background: linear-gradient(135deg, #e8d4c0, #d4b8a0);">
+          🍝
+          <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Smoky Coconut Mala Linguine</div>
+          <div class="dish-lore">
+            <p>
+              A bold meeting of oceans and fire. Wide ribbon linguine swims in a rich, aromatic coconut-chicken broth
+              slowly infused with star anise, cinnamon, and our house mala spice blend. The smoky depth comes from
+              roasted chillies and a generous pour of our signature chilli oil.
+            </p>
+            <p>
+              Finished with crumbled cheese for a salty, spicy contrast and fresh spring onions for brightness,
+              this dish walks the line between comforting and adventurous. The coconut broth tames the mala heat while
+              the spices keep it exciting — a true signature expression of The Lombardy Lane.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRAGON LASAGNA CUPCAKES (Signature) -->
+      <div class="dish-row reveal">
+        <div class="dish-visual" style="background: linear-gradient(135deg, #e8d8c8, #d8c0a8);">
+          🐉
+          <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
+        </div>
+        <div class="dish-text">
+          <div class="dish-name">Dragon Lasagna Cupcakes</div>
+          <div class="dish-lore">
+            <p>
+              Lasagna is, at its core, a <strong>layered argument</strong>. Sheet after sheet of pasta,
+              each separated by sauce and cheese and protein, building a structure that is greater
+              than the sum of its parts. We love that logic. We changed the building material.
+            </p>
+            <p>
+              <strong>Wonton wrappers</strong> — thin, slightly eggy, with a satisfying snap when fried —
+              replace lasagna sheets. Baked in a cupcake tin so each one is its own
+              self-contained tower. The filling: <strong>ginger-garlic soy mince</strong> with
+              Italian herbs, melted cheese, and Sichuan spice threaded through everything.
+              The result looks like a little individual portion of something artful and
+              tastes like a very happy argument between a Chinese kitchen and an Italian one —
+              with no loser. The <em>dragon</em> in the name is earned.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-logo">The Lombardy Lane</div>
+      <div class="footer-tagline">A Tale of Two Cuisine&nbsp;·&nbsp;One Lane</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/thelombardylane" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+          @thelombardylane
+        </a>
+        <a href="https://www.facebook.com/thelombardylane" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+          The Lombardy Lane
+        </a>
+        <a href="https://wa.me/+918335985872" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          Order on WhatsApp
+        </a>
+      </div>
+      <div class="footer-copy">© 2026 The Lombardy Lane. Made with love in a cloud kitchen.</div>
+    </footer>
   </div>
 
-  <div class="dishes-body">
-
-    <!-- ITALIAN HERB DUMPLINGS -->
-    <div class="dish-row reveal">
-      <div class="dish-visual">
-        🥟
-        <span class="dish-category-badge">Starter · Veg / NV</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Italian Herb Dumplings</div>
-        <div class="dish-price-row"><span class="veg-p">₹219 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹249 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            The dumpling is perhaps <strong>the most universal act of care in food</strong>. Across every culture
-            that has folded dough around filling and applied heat, there is the same quiet gesture:
-            someone took the time to make this for you.
-          </p>
-          <p>
-            We asked what would happen if the soul of a <strong>Chinese jiaozi</strong> — its delicate,
-            translucent wrapper, its broth-soaked richness — were infused with the fragrant herb
-            vocabulary of <strong>Italian cuisine</strong>. Rosemary. Thyme. Oregano. Pressed gently into
-            the dough itself, so the wrapper is already flavoured before the filling is added.
-          </p>
-          <p>
-            Each piece is pleated by hand. Served eight to a portion with a simple broth
-            that carries the herbs further, and a finishing crack of <strong>toasted black pepper
-            and dried chili</strong>. Our house-made Signature Chili Oil Tomato Chutney — prepared
-            in small batches, slow-infused — is the add-on we quietly recommend to everyone.
-          </p>
-        </div>
-        <div class="dish-addon">Add on: Lombardy Signature Chili Oil Tomato Chutney ₹39</div>
-      </div>
-    </div>
-
-    <!-- MOZZARELLA TEMPURA -->
-    <div class="dish-row reverse reveal">
-      <div class="dish-visual">
-        🧀
-        <span class="dish-category-badge">Starter · Veg</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Mozzarella Tempura</div>
-        <div class="dish-price-row"><span class="veg-p">₹229 Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span></div>
-        <div class="dish-lore">
-          <p>
-            Tempura is a <strong>Japanese gift to the world</strong> — a batter so light it barely exists,
-            a shell that exists only to introduce texture before stepping aside. We borrow it here
-            not from Japan but through the lens of <strong>Italian and Chinese thinking together</strong>:
-            fresh, high-moisture mozzarella — the kind that weeps when you press it — coated
-            and fried to a shattering, golden shell.
-          </p>
-          <p>
-            The dipping sauce is where the fusion lives: a <strong>soy balsamic vinegar reduction</strong>
-            that is both salty and sweet, with the acidity of a good Italian vinegar and the
-            umami depth of Chinese soy. The moment the hot cheese meets that cold, dark sauce,
-            the two worlds stop being metaphorical.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- MANCHURIAN MEATBALL PASTA -->
-    <div class="dish-row reveal">
-      <div class="dish-visual">
-        🍝
-        <span class="dish-category-badge">Main · Non-Veg</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Manchurian Meatball Pasta</div>
-        <div class="dish-price-row"><span class="nonveg-p">₹289 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            This dish is the one that started the whole idea. It was born from a very simple
-            conversation: <em>"What is the Chinese equivalent of a tomato meatball sauce?"</em>
-            The answer — arrived at after many failed attempts and one very successful one —
-            is <strong>Manchurian</strong>.
-          </p>
-          <p>
-            The Italian meatball, with its fennel and parsley and Parmigiano, is rolled and
-            seared in the same wok that builds the Manchurian sauce — a deep, tangy, fermented
-            soy-ginger base that is arguably <strong>the soul of Indian-Chinese cooking</strong>.
-            They are not natural companions. They are, once you try it, inseparable ones.
-            Served over spaghetti. No apology needed.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- POMODORO SPICE NOODLES -->
-    <div class="dish-row reverse reveal">
-      <div class="dish-visual">
-        🍜
-        <span class="dish-category-badge">Main · Veg / NV</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Pomodoro Spice Noodles</div>
-        <div class="dish-price-row"><span class="veg-p">₹289 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹349 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            The pomodoro — Italian for simply "tomato" — is the most humble and celebrated
-            of sauces. <strong>Tomato, olive oil, garlic, salt.</strong> That is it. That restraint
-            is what makes it extraordinary. We keep the restraint but then ask a single
-            guest to enter: <strong>Chinese spice</strong>.
-          </p>
-          <p>
-            Dried chili. Star anise. White pepper. A whisper of five-spice. They do not
-            overwhelm the tomato — they <strong>amplify</strong> it, the way a bass note amplifies
-            a melody. Served over stir-fried noodles so the sauce can coat every strand and
-            cling the way a good pomodoro should. A finishing chili thread for heat. A simple
-            dish that is far harder to get right than it looks.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- KUNG PAO PENNE -->
-    <div class="dish-row reveal">
-      <div class="dish-visual">
-        🥜
-        <span class="dish-category-badge">Main · Veg / NV</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Kung Pao Penne</div>
-        <div class="dish-price-row"><span class="veg-p">₹269 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹299 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            <strong>Kung Pao</strong> is one of the great Chinese dishes — ancient in origin, brilliant
-            in construction. It is a study in <strong>textural and flavour contrast</strong>: the soft
-            protein, the crunch of peanut, the numbing heat of dried chili, the sweetness
-            of a well-made sauce.
-          </p>
-          <p>
-            We preserve every one of those contrasts but change the vehicle. Penne — with its
-            ridges and its hollow core — catches <strong>the balsamic-soy reduction</strong> in a way no other
-            pasta does. Roasted peanuts give the crunch. Blackened Sichuan chilies give the heat.
-            The balsamic's acidity softens everything into a sauce that is simultaneously familiar
-            and completely new. One of our most-loved dishes by people who were not expecting to love it.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- FIVE SPICED RAVIOLI -->
-    <div class="dish-row reverse reveal">
-      <div class="dish-visual">
-        🫕
-        <span class="dish-category-badge">Main · Non-Veg</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Five Spiced Ravioli</div>
-        <div class="dish-price-row"><span class="nonveg-p">₹339 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            Ravioli is a <strong>labour of love</strong>. You make the dough. You rest it. You roll it.
-            You fill it, seal it, ensure it doesn't tear when it meets boiling water. This is
-            exactly the kind of thing a cloud kitchen is supposed to save time on by not doing.
-            We do it anyway.
-          </p>
-          <p>
-            The filling — <strong>chicken, feta, fresh basil</strong> — is Italian in spirit.
-            The sauce — roasted tomato with garlic, bathed in <strong>Chinese five spice</strong> —
-            is where the dish shifts hemispheres. Five spice (star anise, cloves, cinnamon,
-            Sichuan pepper, fennel seeds) has a natural kinship with slow-roasted tomato that
-            most people have simply never thought to explore. We have. Repeatedly.
-            We are confident you will not want to go back.
-          </p>
-        </div>
-        <div class="dish-addon">Add on: Extra Cheese ₹39</div>
-      </div>
-    </div>
-
-    <!-- SICHUAN BOSCAIOLA -->
-    <div class="dish-row reveal">
-      <div class="dish-visual">
-        🍄
-        <span class="dish-category-badge">Main · Veg / NV</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Sichuan Boscaiola</div>
-        <div class="dish-price-row"><span class="veg-p">₹339 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹389 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            <em>Boscaiola</em> means <strong>"of the woods"</strong> in Italian — a creamy, earthy pasta
-            traditionally built on mushrooms, bacon or sausage, and a rich white sauce. It is an
-            autumn dish. It tastes like the inside of a warm room while rain falls outside.
-          </p>
-          <p>
-            We keep the woods. We keep the cream and the mushrooms. But we plant a <strong>Sichuan
-            peppercorn</strong> right at the heart of it, and it changes everything. Sichuan pepper
-            does not burn. It <strong>tingles</strong> — a citrusy, electric sensation on the tongue that
-            food scientists have a name for (mala) and that everyone who tries it has a different
-            emotional response to. Finished with chili oil and melted cheese. One of those dishes
-            that quietly becomes a person's favourite.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- LAO GAN MA AGLIO E OLIO -->
-    <div class="dish-row reverse reveal">
-      <div class="dish-visual">
-        🌶️
-        <span class="dish-category-badge">Main · Veg / NV</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Lao Gan Ma Aglio E Olio</div>
-        <div class="dish-price-row"><span class="veg-p">₹309 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹349 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            <strong>Aglio e Olio</strong> is the pasta you make at midnight when you have nothing
-            in the fridge. Garlic. Olive oil. Pasta water. Chili. That is it. And it is
-            one of the most profound things Italian cuisine has ever produced —
-            proof that simplicity and greatness are not opposites.
-          </p>
-          <p>
-            <strong>Lao Gan Ma</strong> is China's most beloved condiment — a jar of crunchy,
-            fermented chili crisp with fried garlic, black bean, and a depth of umami so
-            concentrated it makes other condiments feel apologetic.
-            Combine these two garlic-loving, chili-respecting, oil-carrying traditions
-            and the result is <strong>louder, crunchier, more electric</strong> than either parent.
-            We finish with a poached egg and a hit of lemon zest — the egg for richness,
-            the lemon to cut through everything and remind you what subtlety feels like.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SZECHUAN PINK SAUCE PENNE (Signature) -->
-    <div class="dish-row reveal" style="border-top: 2px solid rgba(212,160,23,.3); margin-top:2rem; padding-top:3rem;">
-      <div class="dish-visual" style="background: linear-gradient(135deg, #f5ddd3, #eed0b8);">
-        🌸
-        <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Szechuan Pink Sauce Penne</div>
-        <div class="dish-price-row"><span class="veg-p">₹349 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹389 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            The <strong>pink sauce</strong> — rosé, as the Italians call it — is cream and tomato
-            in conversation. Neither dominant, both necessary. It is a sauce of diplomacy.
-            We respected that and then introduced a <strong>Szechuan agitator</strong> into the
-            diplomatic conversation.
-          </p>
-          <p>
-            Our house-made <strong>Szechuan chili crisp</strong> is prepared in small batches —
-            slow-fried garlic, dried Sichuan chilies, toasted peppercorns, a breath of five-spice.
-            It is stirred through the pink sauce so that every bite is creamy and gentle
-            right up until it isn't. The warmth blooms after. It is one of those sauces
-            that makes you eat faster without realising it. Our most reordered dish.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- WOK FIRED PESTO JASMINE RICE (Signature) -->
-    <div class="dish-row reverse reveal">
-      <div class="dish-visual" style="background: linear-gradient(135deg, #d8e8cc, #c5dab8);">
-        🌿
-        <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Wok Fired Pesto Jasmine Rice</div>
-        <div class="dish-price-row"><span class="nonveg-p">₹349 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            <strong>Pesto</strong> does not belong in a wok. That is, of course, exactly why we put it there.
-            The wok's fierce heat does something to basil pesto that a gentle toss cannot —
-            it <strong>toasts the pine nuts and garlic further</strong>, causes the edges to char very
-            slightly, and releases a smoky, grassy compound that smells like a garden
-            in August and tastes like something you can't quite name but instantly love.
-          </p>
-          <p>
-            <strong>Jasmine rice</strong> was chosen for its fragrance — it carries aromatics
-            in a way that basmati doesn't, and it has just enough stickiness to absorb
-            the wok's residual flavours. Shredded chicken, Chinese spice, and crispy garlic
-            arrive just before plating. The result is three food cultures — Italian, Chinese,
-            South-East Asian — colliding briefly and coming out as something entirely their own.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- DRAGON LASAGNA CUPCAKES (Signature) -->
-    <div class="dish-row reveal">
-      <div class="dish-visual" style="background: linear-gradient(135deg, #e8d8c8, #d8c0a8);">
-        🐉
-        <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
-      </div>
-      <div class="dish-text">
-        <div class="dish-name">Dragon Lasagna Cupcakes</div>
-        <div class="dish-price-row"><span class="veg-p">₹309 Veg</span> <span class="slash">/</span> <span class="nonveg-p">₹359 Non-Veg</span></div>
-        <div class="dish-tags-row"><span class="tag-veg"></span><span class="tag-nv"></span></div>
-        <div class="dish-lore">
-          <p>
-            Lasagna is, at its core, a <strong>layered argument</strong>. Sheet after sheet of pasta,
-            each separated by sauce and cheese and protein, building a structure that is greater
-            than the sum of its parts. We love that logic. We changed the building material.
-          </p>
-          <p>
-            <strong>Wonton wrappers</strong> — thin, slightly eggy, with a satisfying snap when fried —
-            replace lasagna sheets. Baked in a cupcake tin so each one is its own
-            self-contained tower. The filling: <strong>ginger-garlic soy mince</strong> with
-            Italian herbs, melted cheese, and Sichuan spice threaded through everything.
-            The result looks like a little individual portion of something artful and
-            tastes like a very happy argument between a Chinese kitchen and an Italian one —
-            with no loser. The <em>dragon</em> in the name is earned.
-          </p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <footer>
-    <div class="footer-logo">The Lombardy Lane</div>
-    <div class="footer-tagline">Chinese × Italian · Cloud Kitchen</div>
-    <div class="footer-links">
-      <a href="https://www.instagram.com/thelombardylane" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-        @thelombardylane
-      </a>
-      <a href="https://wa.me/+918335985872" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        Order on WhatsApp
-      </a>
-    </div>
-    <div class="footer-copy">© 2025 The Lombardy Lane. Made with love in a cloud kitchen.</div>
-  </footer>
-</div>
-
-<!-- ─── SCRIPTS ──────────────────────────────────────────────────── -->
-<script>
-  /* ── PAGE ROUTING ── */
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    triggerReveal();
-  }
-
-  /* ── MOBILE NAV ── */
-  function toggleMenu() {
-    const links = document.getElementById('nav-links');
-    const burger = document.getElementById('hamburger');
-    const isOpen = links.classList.toggle('open');
-    burger.classList.toggle('open', isOpen);
-    burger.setAttribute('aria-expanded', isOpen);
-  }
-  function closeMobile() {
-    document.getElementById('nav-links').classList.remove('open');
-    const burger = document.getElementById('hamburger');
-    burger.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-  }
-
-  /* ── SCROLL REVEAL ── */
-  function triggerReveal() {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => {
-      el.classList.remove('visible');
-      io.observe(el);
-    });
-  }
-  document.addEventListener('DOMContentLoaded', triggerReveal);
-
-  /* ── PARTICLE SYSTEM ── */
-  (function spawnParticles() {
-    const container = document.getElementById('particles');
-    const colours = ['#b8860b','#9c2c2c','#d4a017','#595937','#f8f1e9'];
-    const count = 22;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const size = Math.random() * 6 + 3;
-      p.style.cssText = `
-        width:${size}px; height:${size}px;
-        background:${colours[Math.floor(Math.random()*colours.length)]};
-        left:${Math.random()*100}%;
-        --dur:${7 + Math.random()*10}s;
-        --delay:${Math.random()*8}s;
-      `;
-      container.appendChild(p);
+  <!-- ─── SCRIPTS ──────────────────────────────────────────────────── -->
+  <script>
+    /* ── PAGE ROUTING ── */
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      triggerReveal();
     }
-  })();
-</script>
+
+    /* ── MOBILE NAV ── */
+    function toggleMenu() {
+      const links = document.getElementById('nav-links');
+      const burger = document.getElementById('hamburger');
+      const isOpen = links.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', isOpen);
+    }
+
+    function closeMobile() {
+      document.getElementById('nav-links').classList.remove('open');
+      const burger = document.getElementById('hamburger');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+
+    /* ── SCROLL REVEAL ── */
+    function triggerReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => {
+        el.classList.remove('visible');
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target); // one-time reveal
+            }
+          });
+        }, { threshold: 0.12 });
+        io.observe(el);
+      });
+    }
+
+    /* ── HERO DISH SLIDESHOW ── */
+    function initHeroSlideshow() {
+      const container = document.getElementById('hero-background');
+      if (!container) return;
+
+      const dishes = [
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Chef%20Tools.jpeg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Manchurian%20Meatball%20Pasta%20-%201.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Italian%20Herb%20Dumplings%20-%201.png",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Lao%20Gan%20Ma%20Aglio%20E%20Olio%20-%201.png",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Sichuan%20Boscaiola%20-%201.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Szechuan%20Pink%20Sauce%20Penne%20-%201.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Szechuan%20Pink%20Sauce%20Penne%20-%202.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Kung%20Pao%20Shrimp%20Spaghetti%20-%201.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Smoky%20Coconut%20Mala%20Linguine%20-%201.png",
+      ];
+
+      // Create images
+      dishes.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = "Signature Fusion Dish";
+        img.loading = i === 0 ? "eager" : "lazy";
+        if (i === 0) img.classList.add('active');
+        container.appendChild(img);
+      });
+
+      let current = 0;
+      const images = container.querySelectorAll('img');
+
+      setInterval(() => {
+        images[current].classList.remove('active');
+        current = (current + 1) % dishes.length;
+        images[current].classList.add('active');
+      }, 5200);
+    }
+
+    /* ── INIT ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeroSlideshow();
+      triggerReveal();
+
+      /* Particle System */
+      const particlesContainer = document.getElementById('particles');
+      const colours = ['#b8860b', '#9c2c2c', '#d4a017', '#595937', '#f8f1e9'];
+      for (let i = 0; i < 22; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 6 + 3;
+        p.style.cssText = `
+        width:${size}px; height:${size}px;
+        background:${colours[Math.floor(Math.random() * colours.length)]};
+        left:${Math.random() * 100}%;
+        --dur:${7 + Math.random() * 11}s;
+        --delay:${Math.random() * 8}s;
+      `;
+        particlesContainer.appendChild(p);
+      }
+    });
+  </script>
 
 </body>
+
 </html>
