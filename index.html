@@ -384,10 +384,35 @@
       text-transform: uppercase;
       color: var(--gold-lt);
       border: 1px solid rgba(212, 160, 23, .35);
-      padding: .4rem 1.2rem;
+      padding: .55rem 1.4rem;
       border-radius: 100px;
       margin-bottom: 2.2rem;
       animation: fadeUp .9s ease both;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 430px) {
+      .hero-badge {
+        font-size: .72rem;
+        padding: .65rem 1.1rem;
+        max-width: 260px;
+      }
+
+      .hero-badge::before {
+        content: "Grounded In Love";
+        display: block;
+      }
+
+      .hero-badge::after {
+        content: "Driven By Hunger";
+        display: block;
+        margin-top: 2px;
+      }
+
+      .hero-badge span {
+        display: none;
+      }
     }
 
     .hero-title {
@@ -428,6 +453,30 @@
       text-align: center;
       animation: fadeUp 1s .6s ease both;
     }
+
+    @media (max-width: 495px) {
+      .hero-tagline {
+        font-size: 1rem;
+        padding: .65rem 1.1rem;
+        max-width: 300px;
+      }
+
+      .hero-tagline::before {
+        content: "Chinese × Italian";
+        display: block;
+      }
+
+      .hero-tagline::after {
+        content: "Love Delivered Fresh";
+        display: block;
+        margin-top: 2px;
+      }
+
+      .hero-tagline span {
+        display: none;
+      }
+    }
+
 
     .hero-cta-row {
       display: flex;
@@ -1033,6 +1082,7 @@
     }
 
     .dish-category-badge {
+      z-index: 2;
       position: absolute;
       top: 12px;
       right: 12px;
@@ -1045,6 +1095,21 @@
       color: var(--gold-lt);
       padding: .25rem .7rem;
       border-radius: 100px;
+    }
+
+    .dish-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      transition: transform 0.5s ease;
+    }
+
+    .dish-row:hover .dish-img {
+      transform: scale(1.05);
     }
 
     .dish-text {}
@@ -1339,15 +1404,16 @@
   <!-- NAV -->
   <nav id="main-nav">
     <div class="nav-logo" onclick="showPage('story')" role="button" aria-label="Go to home">
-      <img src="logo-monogram.png" alt="The Lombardy Lane monogram" class="nav-logo-img" />
+      <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/logo-monogram.png"
+        alt="The Lombardy Lane monogram" class="nav-logo-img" />
       <span class="nav-logo-text">The Lombardy Lane</span>
     </div>
     <ul class="nav-links" id="nav-links">
       <li><a href="#"
           onclick="showPage('story'); document.getElementById('story-start').scrollIntoView({behavior:'smooth'}); closeMobile()">Our
           Story</a></li>
-      <li><a href="#" onclick="showPage('menu');  closeMobile()">Menu</a></li>
-      <li><a href="#" onclick="showPage('dishes');closeMobile()">Dishes</a></li>
+      <li><a href="#" onclick="showPage('menu'); closeMobile()">Menu</a></li>
+      <li><a href="#" onclick="showPage('dishes'); closeMobile()">Dishes</a></li>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle menu"
       aria-expanded="false">
@@ -1365,12 +1431,18 @@
       <div class="hero-background" id="hero-background"></div>
       <div class="particles" id="particles"></div>
 
-      <img src="logo-crest.png" alt="The Lombardy Lane crest" class="hero-crest" />
-      <span class="hero-badge">Grounded In Love &nbsp;·&nbsp; Driven By Hunger</span>
+      <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/logo-crest.png"
+        alt="The Lombardy Lane crest" class="hero-crest" />
+      <!-- <span class="hero-badge">Grounded In Love &nbsp;·&nbsp; Driven By Hunger</span> -->
+      <span class="hero-badge">
+        <span>Grounded In Love &nbsp;·&nbsp; Driven By Hunger</span>
+      </span>
       <!-- <h1 class="hero-title">The Lombardy Lane</h1>
-    <p class="hero-subtitle">Where the wok meets the pasta pot — a cloud kitchen born from two great culinary worlds.</p> -->
+      <p class="hero-subtitle">Where the wok meets the pasta pot — a cloud kitchen born from two great culinary worlds.</p> -->
       <div class="hero-divider"></div>
-      <p class="hero-tagline">Chinese &times; Italian &nbsp;·&nbsp; Love Delivered Fresh</p>
+      <span class="hero-tagline">
+        <span>Chinese &times; Italian &nbsp;·&nbsp; Love Delivered Fresh</span>
+      </span>
       <div class="hero-cta-row">
         <button class="btn-primary" onclick="showPage('menu')">Browse the Menu</button>
         <button class="btn-outline"
@@ -1550,6 +1622,11 @@
         <a href="https://wa.me/+918335985872" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
           Order on WhatsApp
+        </a>
+        <a href="mailto:thelombardylane@gmail.com" target="mailto:thelombardylane@gmail.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail"
+            style="width:22px; height:22px;">
+          Email Us
         </a>
       </div>
       <div class="footer-copy">© 2026 The Lombardy Lane. Made with love in a cloud kitchen.</div>
@@ -1782,6 +1859,11 @@
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
           Order on WhatsApp
         </a>
+        <a href="mailto:thelombardylane@gmail.com" target="mailto:thelombardylane@gmail.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail"
+            style="width:22px; height:22px;">
+          Email Us
+        </a>
       </div>
       <div class="footer-copy">© 2026 The Lombardy Lane. Made with love in a cloud kitchen.</div>
     </footer>
@@ -1807,7 +1889,9 @@
       <!-- ITALIAN HERB DUMPLINGS -->
       <div class="dish-row reveal">
         <div class="dish-visual">
-          🥟
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Italian%20Herb%20Dumplings%20-%201.png"
+            alt="Italian Herb Dumplings" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Starter&nbsp;·&nbsp;Veg / NV</span>
         </div>
         <div class="dish-text">
@@ -1837,7 +1921,9 @@
       <!-- MOZZARELLA TEMPURA -->
       <div class="dish-row reverse reveal">
         <div class="dish-visual">
-          🧀
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Mozzarella%20Tempura%20-%201.png"
+            alt="Mozzarella Tempura" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Starter&nbsp;·&nbsp;Veg</span>
         </div>
         <div class="dish-text">
@@ -1863,7 +1949,9 @@
       <!-- MANCHURIAN MEATBALL PASTA -->
       <div class="dish-row reveal">
         <div class="dish-visual">
-          🍝
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Manchurian%20Meatball%20Pasta%20-%201.jpg"
+            alt="Manchurian Meatball Pasta" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Main&nbsp;·&nbsp;Non-Veg</span>
         </div>
         <div class="dish-text">
@@ -1913,9 +2001,11 @@
       </div> -->
 
       <!-- KUNG PAO PENNE -->
-      <div class="dish-row reveal">
+      <div class="dish-row reverse reveal">
         <div class="dish-visual">
-          🥜
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Kung%20Pao%20Penne%20-%201.jpg"
+            alt="Kung Pao Penne" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
         </div>
         <div class="dish-text">
@@ -1939,9 +2029,11 @@
       </div>
 
       <!-- FIVE SPICED RAVIOLI -->
-      <div class="dish-row reverse reveal">
+      <div class="dish-row reveal">
         <div class="dish-visual">
-          🫕
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Five%20Spiced%20Ravioli%20-%201.jpg"
+            alt="Five Spiced Ravioli" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Main&nbsp;·&nbsp;Non-Veg</span>
         </div>
         <div class="dish-text">
@@ -1966,9 +2058,11 @@
       </div>
 
       <!-- SICHUAN BOSCAIOLA -->
-      <div class="dish-row reveal">
+      <div class="dish-row reverse reveal">
         <div class="dish-visual">
-          🍄
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Sichuan%20Boscaiola%20-%201.jpg"
+            alt="Sichuan Boscaiola" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
         </div>
         <div class="dish-text">
@@ -1992,9 +2086,11 @@
       </div>
 
       <!-- LAO GAN MA AGLIO E OLIO -->
-      <div class="dish-row reverse reveal">
+      <div class="dish-row reveal">
         <div class="dish-visual">
-          🌶️
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Lao%20Gan%20Ma%20Aglio%20E%20Olio%20-%201.png"
+            alt="Lao Gan Ma Aglio E Olio" class="dish-img" loading="lazy">
           <span class="dish-category-badge">Main&nbsp;·&nbsp;Veg / NV</span>
         </div>
         <div class="dish-text">
@@ -2020,10 +2116,11 @@
       </div>
 
       <!-- SZECHUAN PINK SAUCE PENNE (Signature) -->
-      <div class="dish-row reveal"
-        style="border-top: 2px solid rgba(212,160,23,.3); margin-top:2rem; padding-top:3rem;">
+      <div class="dish-row reverse reveal">
         <div class="dish-visual" style="background: linear-gradient(135deg, #f5ddd3, #eed0b8);">
-          🌸
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Szechuan%20Pink%20Sauce%20Penne%20-%201.jpg"
+            alt="Szechuan Pink Sauce Penne" class="dish-img" loading="lazy">
           <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
         </div>
         <div class="dish-text">
@@ -2074,10 +2171,11 @@
       </div> -->
 
       <!-- SMOKY COCONUT MALA LINGUINE -->
-      <div class="dish-row reveal"
-        style="border-top: 2px solid rgba(212,160,23,.3); margin-top:2rem; padding-top:3rem;">
-        <div class="dish-visual" style="background: linear-gradient(135deg, #e8d4c0, #d4b8a0);">
-          🍝
+      <div class="dish-row reveal">
+        <div class="dish-visual" style="background: linear-gradient(135deg, #d8e8cc, #c5dab8);">
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Smoky%20Coconut%20Mala%20Linguine%20-%201.png"
+            alt="Smoky Coconut Mala Linguine" class="dish-img" loading="lazy">
           <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
         </div>
         <div class="dish-text">
@@ -2098,9 +2196,11 @@
       </div>
 
       <!-- DRAGON LASAGNA CUPCAKES (Signature) -->
-      <div class="dish-row reveal">
+      <div class="dish-row reverse reveal">
         <div class="dish-visual" style="background: linear-gradient(135deg, #e8d8c8, #d8c0a8);">
-          🐉
+          <img
+            src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Dragon%20Lasagna%20Cupcakes%20-%201.jpg"
+            alt="Dragon Lasagna Cupcakes" class="dish-img" loading="lazy">
           <span class="dish-category-badge" style="background:var(--crimson);">Signature</span>
         </div>
         <div class="dish-text">
@@ -2141,6 +2241,11 @@
         <a href="https://wa.me/+918335985872" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
           Order on WhatsApp
+        </a>
+        <a href="mailto:thelombardylane@gmail.com" target="mailto:thelombardylane@gmail.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail"
+            style="width:22px; height:22px;">
+          Email Us
         </a>
       </div>
       <div class="footer-copy">© 2026 The Lombardy Lane. Made with love in a cloud kitchen.</div>
@@ -2197,14 +2302,18 @@
 
       const dishes = [
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Chef%20Tools.jpeg",
-        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Manchurian%20Meatball%20Pasta%20-%201.jpg",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Italian%20Herb%20Dumplings%20-%201.png",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Lao%20Gan%20Ma%20Aglio%20E%20Olio%20-%201.png",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Manchurian%20Meatball%20Pasta%20-%201.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Scenematic%204.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Scenematic%201.png",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Sichuan%20Boscaiola%20-%201.jpg",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Szechuan%20Pink%20Sauce%20Penne%20-%201.jpg",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Scenematic%203.jpg",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Szechuan%20Pink%20Sauce%20Penne%20-%202.jpg",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Kung%20Pao%20Shrimp%20Spaghetti%20-%201.jpg",
         "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Smoky%20Coconut%20Mala%20Linguine%20-%201.png",
+        "https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Scenematic%202.gif",
       ];
 
       // Create images
