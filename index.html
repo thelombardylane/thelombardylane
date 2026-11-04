@@ -947,6 +947,73 @@
       background: var(--crimson);
     }
 
+
+    /* ─── MENU CARD IMAGES ───────────────────────────────────────── */
+    .menu-card {
+      padding: 0;
+      overflow: hidden;
+      gap: .55rem;
+    }
+
+    .menu-card>*:not(.card-media) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .menu-card>*:last-child {
+      padding-bottom: 1.5rem;
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      margin-bottom: .6rem;
+      background: linear-gradient(135deg, var(--parchm), #e8dcc8);
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
+    }
+
+    .card-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(26, 21, 16, .28), transparent 45%);
+    }
+
+    .menu-card:hover .card-media img {
+      transform: scale(1.06);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--crimson);
+      color: var(--cream);
+      padding: .25rem .7rem;
+      border-radius: 100px;
+    }
+
+    @media(max-width: 640px) {
+      .card-media {
+        aspect-ratio: 16 / 10;
+      }
+    }
+
     /* Signature section highlight */
     .signature-wrap {
       background: rgba(212, 160, 23, .07);
@@ -1673,6 +1740,9 @@
         <div class="menu-grid">
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Italian%20Herb%20Dumplings%20-%201.png" alt="Italian Herb Dumplings" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Italian Herb Dumplings</div>
               <div class="card-price">
@@ -1696,6 +1766,9 @@
           </div> -->
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Mozzarella%20Arancini%20di%20Patate%20-%201.jpeg" alt="Mozzarella Arancini di Patate" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Mozzarella Arancini di Patate</div>
               <div class="card-price"><span class="veg-p">₹199</span></div>
@@ -1714,6 +1787,9 @@
         <div class="menu-grid">
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Manchurian%20Meatball%20Pasta%20-%201.jpg" alt="Manchurian Meatball Pasta" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Manchurian Meatball Pasta</div>
               <div class="card-price"><span class="nonveg-p">₹289</span></div>
@@ -1736,6 +1812,9 @@
           </div> -->
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Kung%20Pao%20Penne%20-%201.jpg" alt="Kung Pao Penne" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Kung Pao Penne</div>
               <div class="card-price"><span class="veg-p">₹269</span><span class="slash"> / </span><span
@@ -1748,6 +1827,9 @@
           </div>
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Five%20Spiced%20Ravioli%20-%201.jpg" alt="Five Spiced Ravioli" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Five Spiced Ravioli</div>
               <div class="card-price"><span class="nonveg-p">₹339</span></div>
@@ -1759,6 +1841,9 @@
           </div>
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Sichuan%20Boscaiola%20-%201.jpg" alt="Sichuan Boscaiola" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Sichuan Boscaiola</div>
               <div class="card-price"><span class="veg-p">₹339</span><span class="slash"> / </span><span
@@ -1771,6 +1856,9 @@
           </div>
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Lao%20Gan%20Ma%20Aglio%20E%20Olio%20-%201.png" alt="Lao Gan Ma Aglio E Olio" loading="lazy" onerror="this.parentNode.style.display='none'">
+            </div>
             <div class="card-top">
               <div class="card-name">Lao Gan Ma Aglio E Olio</div>
               <div class="card-price"><span class="nonveg-p">₹309</span></div>
@@ -1791,6 +1879,9 @@
         <div class="menu-grid">
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Szechuan%20Pink%20Sauce%20Penne%20-%201.jpg" alt="Szechuan Pink Sauce Penne" loading="lazy" onerror="this.parentNode.style.display='none'"><span class="card-badge">Signature</span>
+            </div>
             <div class="card-top">
               <div class="card-name">Szechuan Pink Sauce Penne</div>
               <div class="card-price"><span class="veg-p">₹349</span><span class="slash"> / </span><span
@@ -1812,6 +1903,9 @@
         </div> -->
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Smoky%20Coconut%20Mala%20Linguine%20-%201.png" alt="Smoky Coconut Mala Linguine" loading="lazy" onerror="this.parentNode.style.display='none'"><span class="card-badge">Signature</span>
+            </div>
             <div class="card-top">
               <div class="card-name">Smoky Coconut Mala Linguine</div>
               <div class="card-price"><span class="nonveg-p">₹349</span></div>
@@ -1823,6 +1917,9 @@
           </div>
 
           <div class="menu-card">
+            <div class="card-media">
+              <img src="https://raw.githubusercontent.com/thelombardylane/thelombardylane/refs/heads/main/dishes/Dragon%20Lasagna%20Cupcakes%20-%201.jpg" alt="Dragon Lasagna Cupcakes" loading="lazy" onerror="this.parentNode.style.display='none'"><span class="card-badge">Signature</span>
+            </div>
             <div class="card-top">
               <div class="card-name">Dragon Lasagna Cupcakes</div>
               <div class="card-price"><span class="veg-p">₹309</span><span class="slash"> / </span><span
