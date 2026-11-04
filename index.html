@@ -784,6 +784,59 @@
       padding: .15rem .6rem;
     }
 
+
+    /* ─── DELIVERY PARTNER LOGOS ─────────────────────────────────── */
+    .dcard-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      min-width: 120px;
+      padding: 8px 16px;
+      margin-bottom: .7rem;
+      border-radius: 10px;
+      font-family: 'Satisfy', cursive;
+      font-size: 1.35rem;
+      color: var(--gold-lt);
+    }
+
+    .dcard-logo img {
+      height: 100%;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .dcard-logo.on-light {
+      background: var(--cream);
+    }
+
+    .dcard-logo.on-swiggy {
+      background: #fc8019;
+    }
+
+    .dcard-logo.on-zomato {
+      background: #E23747;
+    }
+
+    .dcard.coming-soon .dcard-logo {
+      opacity: .85;
+    }
+
+    .live-badge {
+      display: inline-block;
+      margin-top: .6rem;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #7bd88f;
+      border: 1px solid #7bd88f;
+      border-radius: 100px;
+      padding: .15rem .6rem;
+    }
+
     /* ─── PAGE 2 – MENU ──────────────────────────────────────────── */
     #page-menu {
       background: var(--cream);
@@ -1658,21 +1711,21 @@
           </div>
           <div class="dcard coming-soon reveal">
             <div class="dcard-emoji">🛵</div>
-            <div class="dcard-name">Zomato</div>
+            <div class="dcard-logo on-zomato"><img src="https://b.zmtcdn.com/web_assets/8313a97515fcb0447d2d77c276532a511583262271.png" alt="Zomato" loading="lazy" onerror="this.replaceWith(document.createTextNode(this.alt))"></div>
             <div class="dcard-desc">We are in active discussions and expect to go live very soon.</div>
             <span class="coming-badge">Coming Soon</span>
           </div>
           <div class="dcard coming-soon reveal">
             <div class="dcard-emoji">🛵</div>
-            <div class="dcard-name">Swiggy</div>
+            <div class="dcard-logo on-swiggy"><img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/static-assets/images/swiggy_logo_white.png" alt="Swiggy" loading="lazy" onerror="this.replaceWith(document.createTextNode(this.alt))"></div>
             <div class="dcard-desc">Final stages of onboarding. Watch this space — we'll announce the day we're live.</div>
             <span class="coming-badge">Coming Soon</span>
           </div>
-          <div class="dcard coming-soon reveal">
+          <div class="dcard reveal">
             <div class="dcard-emoji">🛵</div>
-            <div class="dcard-name">Ownly</div>
-            <div class="dcard-desc">Coming soon to Ownly. We're putting the finishing touches in place — watch this space for our launch.</div>
-            <span class="coming-badge">Coming Soon</span>
+            <div class="dcard-logo on-light"><img src="https://ownly.food/assets/brand/ownly-logo-horizontal.svg" alt="Ownly" loading="lazy" onerror="this.replaceWith(document.createTextNode(this.alt))"></div>
+            <div class="dcard-desc">We're live on <a href="https://ownly.food" target="_blank" style="text-decoration: none; color: inherit;">Ownly</a>! Find The Lombardy Lane there and order your favourites.</div>
+            <span class="live-badge">Live Now</span>
           </div>
         </div>
       </div>
@@ -1691,7 +1744,7 @@
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
           The Lombardy Lane
         </a>
-        <a href="https://wa.me/+918335985872" target="_blank">
+        <a href="https://wa.me/918335985872?text=Hi%20The%20Lombardy%20Lane!%20I'd%20like%20to%20place%20an%20order." target="_blank" class="btn-wa">WhatsApp</a>
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
           Order on WhatsApp
         </a>
